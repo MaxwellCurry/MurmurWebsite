@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - Murmur</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+  
+    img {
+      max-width: 400px;
+      height: auto;
+    }
+  
+    h2 {
+      color: #6495ED;
+      margin-top: -40px;
+    }
+  
+    input {
+      width: 300px;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+    }
+  
+    input::placeholder {
+      color: #aaa;
+    }
+  
+    .signup-button {
+      background-color: #16e569;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      position: absolute;
+      margin-top: 70px;
+      margin-bottom: 10px;
+      margin-left: -60.7px;
+    }
+
+
+  </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id" content="499595493997-8ei0fpbv2k2jt3cbkp2tnp8ccdh2en6g.apps.googleusercontent.com">
+  <link rel="stylesheet" href="signup.css">
+  <title>Sign Up</title>
+</head>
+
+<body>
+
+  <img src="bird.png" alt="Bird Image">
+  
+  <h2>Registration</h2>
+
+  <div>
+    <input type="text" id="school" placeholder="Enter Your School">
+  </div>
+
+  <div>
+    <input type="text" id="email" placeholder="Enter your Full Name">
+  </div>
+
+  <button class="signup-button" onclick="submitSignUp()">Sign Up!</button>
+
+  <script>
+    var schoolInput = document.getElementById('school');
+    var emailInput = document.getElementById('email');
+
+    // Function to get query parameters from the URL
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get the 'school' parameter from the URL
+    var schoolFromURL = getQueryParam('school');
+
+    // Set the value of the school input
+    if (schoolFromURL) {
+      schoolInput.value = schoolFromURL;
+    }
+
+    function submitSignUp(){
+        window.location.href = "new.html";
+    }
+  </script>
+
+
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <div class="data">
+    <p id="name" class="alert alert-success"></p>
+    <p id="email" class="alert alert-danger"></p>
+    <button type="button" class="btn btn-danger" onclick="signOut();">Sign Out</button>
+  </div>
+
+  <script src="signup.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</body>
+</html>
