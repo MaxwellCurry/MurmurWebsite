@@ -2,117 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Murmur</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      height: 100vh;
-      background-color: #ffffff;
-    }
-
-    #logo {
-      max-width: 100%;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -70%);
-      margin-bottom: 20px;
-    }
-
-    .search-bar-container {
-      position: absolute;
-      top: 67.5%;
-      left: 50%;
-      transform: translate(-50%, -120%);
-      width: 80%;
-      max-width: 200px;
-      display: flex;
-      align-items: center;
-      z-index: 3;
-    }
-
-    .search-bar {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    .search-icon {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      cursor: pointer;
-    }
-
-    .schools-dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      display: none;
-      z-index: 1;
-    }
-
-    .school-option {
-      padding: 10px;
-      cursor: pointer;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .logbutton, .signbutton {
-      padding: 5px 10px;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      border: none;
-      border-radius: 5px;
-      position: absolute;
-      cursor: pointer;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-
-    #signup-btn {
-      top: 68.2%;
-      background-color: #16e569;
-      color: #fff;
-    }
-
-    #login-btn {
-      top: 78%;
-      background-color: #87CEFA;
-      color: #fff;
-    }
-
-    .button:hover {
-      background-color: #6495ED;
-    }
-  </style>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <img id="logo" src="logo.png" alt="Logo">
-
   <div class="search-bar-container">
     <input type="text" class="search-bar" id="schoolSearch" placeholder="Find Your School">
     <div class="search-icon">&#128269;</div>
 
     <div class="schools-dropdown"></div>
   </div>
-
   <a href="#" id="signup-btn" class="logbutton" onclick="redirectToSignup()">Sign Up!</a>
   <a href="#" id="login-btn" class="signbutton" onclick="redirectToLogin()">Log In</a>
 
