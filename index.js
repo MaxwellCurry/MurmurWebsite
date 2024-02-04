@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(){
   var dropdown = document.querySelector(".schools-dropdown");
 
 
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 6000; i++) {
 	var option = document.createElement("div");
 	option.classList.add("school-option");
 	dropdown.appendChild(option);
