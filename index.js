@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function(){
   var dropdown = document.querySelector(".schools-dropdown");
 
 
-  for(let i = 0; i < 10; i++) {
+  for(let i = 0; i < 50; i++) {
 	var option = document.createElement("div");
 	option.classList.add("school-option");
 	dropdown.appendChild(option);
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	if (event.target.closest(".search-bar-container")) {
 	  dropdown.style.display = "block";
 	  schoolOptions.forEach(function (option, index) {
-		if (index < 3) {
+		if (index < 5) {
 		  option.style.display = "block";
 		} else {
 		 option.style.display = "none";
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	
 	schoolOptions.forEach(function (option) {
 	  var optionText = option.textContent.toLowerCase();
-	  if (optionText.includes(searchTerm) && visibleOptionsCount < 3) {
+	  if (optionText.includes(searchTerm) && visibleOptionsCount < 5) {
 		option.style.display = "block";
 		visibleOptionsCount++;
 	  } 
