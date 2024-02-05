@@ -102,8 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
   });
 
-  document.getElementById("donate-button").addEventListener("click", function() {
-	window.location.href = "https://www.youtube.com/channel/UCcPbMwA_yo9RELWoVhvuufg";
-  });
+document.getElementById("donate-button").addEventListener("click", function() {
+	window.open("https://midpenpost.org/tag/garv-virginkar/", "_blank");
+});
   
   

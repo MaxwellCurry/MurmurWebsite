@@ -157,7 +157,7 @@ body {
   line-height: 50px;
   text-align: center;
   font-size: 37px;
-  background-color: #3498db;
+  background-color: #3cb3e5;
   color: #fff;
   cursor: pointer;
   border: none;
@@ -165,7 +165,7 @@ body {
 }
 
 #donate-button:hover {
-  background-color: #2980b9;
+  background-color: #6bb9f0;
 }
 
 
