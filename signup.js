@@ -20,3 +20,47 @@ function signOut() {
         $(".data").css("display","none");
     });
 }
+
+var schoolInput = document.getElementById('school');
+var emailInput = document.getElementById('email');
+
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
+var schoolFromURL = getQueryParam('school');
+
+if (schoolFromURL) {
+  schoolInput.value = schoolFromURL;
+}
+
+function nextTab() {
+    showTab('tab2', 1)
+}
+
+function submitSignUp() {
+    window.location.href = "new.html";
+}
+
+function showTab(tabId, buttonIndex) {
+    // Remove active class from all tab buttons
+    var tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(function(button) {
+      button.classList.remove('active-tab-button');
+    });
+  
+    // Add active class to the clicked button
+    tabButtons[buttonIndex].classList.add('active-tab-button');
+  
+    // Hide all tabs
+    var tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(function(tab) {
+      tab.style.display = 'none';
+    });
+  
+    // Show the selected tab
+    document.getElementById(tabId).style.display = 'block';
+}
+
+showTab('tab1', 0);

@@ -1,4 +1,5 @@
 function onLogIn(googleUser) {
+    console.log("I AM SIGNING IN");
     var profile = googleUser.getBasicProfile();
 
     $("#name").text(profile.getName());

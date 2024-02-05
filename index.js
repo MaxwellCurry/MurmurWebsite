@@ -80,10 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	var infoButton = document.getElementById("info-button");
 	var popupContainer = document.createElement("div");
 	popupContainer.classList.add("popup-container");
+	popupContainer.style.display = "none"; // Set initial state to "none"
 
 	var popupText = document.createElement("div");
 	popupText.classList.add("popup-text");
-	popupText.textContent = "Introducing Murmur – the anonymous dating app where connections unfold naturally! Simply input your school and the names of your crushes, and if there's a mutual crush, you'll both get a notification after a random wait time, ensuring privacy. Until you both decide to accept the match, identities remain anonymous. No initial stakes, just excitement! Embrace the fun, safe, and anonymous world of Murmur – where connections happen on your terms!";
+	popupText.textContent = "Introducing the Murmur! Simply input your school and the names of people you secretly like, and if there's a mutual crush, you'll both get a notification signifying a match. Until you both decide to accept the match, identities will remain anonymous. Enjoy!";
 
 	var closePopup = document.createElement("div");
 	closePopup.classList.add("close-popup");
@@ -98,9 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	infoButton.addEventListener("click", function () {
+		// Toggle the display property
 		popupContainer.style.display = popupContainer.style.display === "none" ? "block" : "none";
 	});
 });
+
 
 
 document.getElementById("donate-button").addEventListener("click", function() {
