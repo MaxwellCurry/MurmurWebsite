@@ -80,27 +80,28 @@ document.addEventListener("DOMContentLoaded", function () {
 	var infoButton = document.getElementById("info-button");
 	var popupContainer = document.createElement("div");
 	popupContainer.classList.add("popup-container");
-  
+
 	var popupText = document.createElement("div");
 	popupText.classList.add("popup-text");
 	popupText.textContent = "Introducing Murmur – the anonymous dating app where connections unfold naturally! Simply input your school and the names of your crushes, and if there's a mutual crush, you'll both get a notification after a random wait time, ensuring privacy. Until you both decide to accept the match, identities remain anonymous. No initial stakes, just excitement! Embrace the fun, safe, and anonymous world of Murmur – where connections happen on your terms!";
-  
+
 	var closePopup = document.createElement("div");
 	closePopup.classList.add("close-popup");
 	closePopup.textContent = "✖";
-  
+
 	popupContainer.appendChild(popupText);
 	popupContainer.appendChild(closePopup);
 	document.body.appendChild(popupContainer);
-  
-	infoButton.addEventListener("click", function () {
-	  popupContainer.style.display = "block";
-	});
-  
+
 	closePopup.addEventListener("click", function () {
 	  popupContainer.style.display = "none";
 	});
-  });
+
+	infoButton.addEventListener("click", function () {
+		popupContainer.style.display = popupContainer.style.display === "none" ? "block" : "none";
+	});
+});
+
 
 document.getElementById("donate-button").addEventListener("click", function() {
 	window.open("https://midpenpost.org/tag/garv-virginkar/", "_blank");
