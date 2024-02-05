@@ -5,6 +5,9 @@ body {
   position: relative;
   height: 100vh;
   background-color: #ffffff;
+  background-image: url('paper.png');
+  background-size: cover; /* or 'contain' based on your preference */
+  background-repeat: no-repeat;
 }
 
 #logo {
@@ -85,10 +88,18 @@ body {
   color: #fff;
 }
 
+#signup-btn:hover {
+  background-color: #26f277;
+}
+
 #login-btn {
   top: 74.5%;
   background-color: #87CEFA;
   color: #fff;
+}
+
+#login-btn:hover {
+  background-color: #6bb9f0;
 }
 
 .button:hover {
@@ -119,13 +130,13 @@ body {
   top: 50%;
   left: 50.9%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 200, 100, 0.8);
+  background-color: rgba(255, 200, 100, 0.95);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   display: none;
   z-index: 4;
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Dancing Script', cursive;
 }
 
 .popup-container p {
