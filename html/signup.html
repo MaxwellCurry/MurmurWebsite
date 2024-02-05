@@ -3,29 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign Up - Murmur</title>
-  <style>
-
-
-  </style>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-signin-client_id" content="499595493997-8ei0fpbv2k2jt3cbkp2tnp8ccdh2en6g.apps.googleusercontent.com">
-  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="/css/signup.css">
   <title>Sign Up</title>
 </head>
-
 <body>
-
-  <img src="bird.png" alt="Bird Image">
-
+  <img src="/images/bird.png" alt="Bird Image">
   <div id="tab1" class="tab-content">
     <h2>Personal Info</h2>
     <div><input type="text" id="school" placeholder="Enter Your School"></div>
     <div><input type="text" id="email" placeholder="Enter your Full Name"></div>
     <button class="next-button" onclick="nextTab()">Next!</button>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </div>
-
   <div id="tab2" class="tab-content">
     <h2 class="crush-title">Crushes List</h2>
     <div><input type="text" class="crush-input" id="crush1" placeholder="Crush 1"></div>
@@ -33,18 +21,12 @@
     <div><input type="text" class="crush-input" id="crush3" placeholder="Crush 3"></div>
     <div><input type="text" class="crush-input" id="crush4" placeholder="Crush 4"></div>
     <div><input type="text" class="crush-input" id="crush4" placeholder="Crush 4"></div>
-
     <button class="signup-button" onclick="submitSignUp()">Sign Up!</button>
   </div>
-
   <div class="tab-container">
     <button class="tab-button" onclick="showTab('tab1', 0)"></button>
     <button class="tab-button" onclick="showTab('tab2', 1)"></button>
   </div>
-
-  <script src="signup.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="/js/signup.js"></script>
 </body>
 </html>

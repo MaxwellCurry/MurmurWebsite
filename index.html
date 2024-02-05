@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Murmur</title>
-  <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" />
+	<script src="/js/main.js" defer type="module"></script>
+	<script src="/js/index.js"></script>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" />
 </head>
 <body>
-  <img id="logo" src="logo.png" alt="Logo">
+  <img id="logo" src="/images/logo.png" alt="Logo">
   <div id="info-button" class="info-icon">&#8505;</div>
   <div id="donate-button">&#36;</div>
   <div class="search-bar-container">
@@ -16,8 +18,7 @@
     <div class="search-icon">&#128269;</div>
     <div class="schools-dropdown"></div>
   </div>
-  <a href="#" id="signup-btn" class="logbutton" onclick="redirectToSignup()">Sign Up!</a>
-  <a href="#" id="login-btn" class="signbutton" onclick="redirectToLogin()">Log In</a>
-<script src="index.js"></script>
+  	<a href="#" id="signup-btn" class="signbutton" onclick="redirectToSignup()">Sign Up!</a>
+		<button id="google-login-button" class="logbutton">Log In with Google</button>
 </body>
 </html>
