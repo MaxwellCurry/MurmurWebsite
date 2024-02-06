@@ -23,7 +23,11 @@ googleLogIn.addEventListener("click", function(){
     // IdP data available using getAdditionalUserInfo(result)
     // ...
 		console.log(user)
+<<<<<<< HEAD
 		window.location.href = ""; //change location to like logged or something IDK LMFAOO
+=======
+		window.location.href = "/html/new.html";
+>>>>>>> refs/remotes/origin/main
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
