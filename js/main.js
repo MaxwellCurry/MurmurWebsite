@@ -1,16 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { GoogleAuthProvider, connectAuthEmulator, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-
-const firebaseConfig = { //eventually move to config.js file -> temporary for now
-  apiKey: "AIzaSyCyqYSgE4lza8qMRAgA4QD_ktre6t9BnQc",
-  authDomain: "murmurwebsite.firebaseapp.com",
-  projectId: "murmurwebsite",
-  storageBucket: "murmurwebsite.appspot.com",
-  messagingSenderId: "499595493997",
-  appId: "1:499595493997:web:5295c99c3e07d9f7dd7564",
-  measurementId: "G-P59KESGR07"
-};
+import { firebaseConfig } from './config.js';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -32,7 +23,7 @@ googleLogIn.addEventListener("click", function(){
     // IdP data available using getAdditionalUserInfo(result)
     // ...
 		console.log(user)
-		//window.location.href = ""; //change location to like logged or something IDK LMFAOO
+		window.location.href = ""; //change location to like logged or something IDK LMFAOO
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;

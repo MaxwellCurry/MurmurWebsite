@@ -55,17 +55,6 @@ document.addEventListener("DOMContentLoaded", function(){
 		});
   });
 });
-
-function redirectToSignup() {
-  var schoolSearchInput = document.getElementById("schoolSearch");
-  var schoolName = schoolSearchInput.value.trim();
-  window.location.href = "/html/signup.html?school=" + encodeURIComponent(schoolName);
-}
-
-function redirectToLogin() {
-  window.location.href = "login.html";
-}
-
 document.addEventListener("DOMContentLoaded", function () {
 	var infoButton = document.getElementById("info-button");
 	var popupContainer = document.createElement("div");
@@ -92,9 +81,20 @@ document.addEventListener("DOMContentLoaded", function () {
 		popupContainer.style.display = popupContainer.style.display === "none" ? "block" : "none";
 	});
 });
-
-
-
-document.getElementById("donate-button").addEventListener("click", function() {
-	window.open("https://midpenpost.org/tag/garv-virginkar/", "_blank");
+window.addEventListener("DOMContentLoaded", (event) => {
+    const donate = document.getElementById('donate-button');
+    if (donate) {
+      donate.addEventListener('click', function() {
+				window.open("https://midpenpost.org/tag/garv-virginkar/", "_blank");
+			});
+    }
 });
+
+function redirectToSignup() {
+  var schoolSearchInput = document.getElementById("schoolSearch");
+  var schoolName = schoolSearchInput.value.trim();
+  window.location.href = "/html/signup.html?school=" + encodeURIComponent(schoolName);
+}
+function redirectToLogin() {
+  window.location.href = "login.html";
+}
