@@ -41,12 +41,13 @@ input {
 }
 
 .crush-input {
-  width: 180px; /* Updated width */
-  margin-top: 1px; /* Updated margin-top */
-  margin-bottom: 1px; /* Updated margin-bottom */
-  border: 1px solid #ccc;
-  border-radius: 10px; /* Updated border-radius */
-  outline: none;
+	width: 180px;
+	padding: 10px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	outline: none;
 }
 
 input::placeholder {
@@ -142,7 +143,7 @@ input::placeholder {
   justify-content: center;
   padding: 10px;
   position: absolute;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 10px;
 }
 

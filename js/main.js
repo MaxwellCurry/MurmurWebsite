@@ -32,7 +32,7 @@ googleLogIn.addEventListener("click", function(){
     // IdP data available using getAdditionalUserInfo(result)
     // ...
 		console.log(user)
-		//window.location.href = ""; //change location to like logged or something IDK LMFAOO
+		window.location.href = "/html/new.html";
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
