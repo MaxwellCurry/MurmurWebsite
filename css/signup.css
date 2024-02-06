@@ -41,10 +41,12 @@ input {
 }
 
 .crush-input {
-	width: 180px;
-	margin-top: 1px;
-	margin-bottom: 1px;
-	outline: none;
+  width: 180px; /* Updated width */
+  margin-top: 1px; /* Updated margin-top */
+  margin-bottom: 1px; /* Updated margin-bottom */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Updated border-radius */
+  outline: none;
 }
 
 input::placeholder {
@@ -115,4 +117,42 @@ input::placeholder {
 
 .tab-content {
 	display: none;
+}
+
+.logbutton {
+  padding: -120px 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+#google-login-button {
+  background-color: #5DADE2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: absolute;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#google-logo {
+  width: 20px; /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+  margin-right: -4px;
+  margin-left: 6px;
+}
+
+#google-login-button:hover {
+  background-color: #3498db;
 }

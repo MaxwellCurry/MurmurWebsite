@@ -5,8 +5,8 @@ body {
   position: relative;
   height: 100vh;
   background-color: #ffffff;
-  background-image: url('paper.png');
-  background-size: cover; /* or 'contain' based on your preference */
+  background-image: url("/images/paper.png");
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -67,9 +67,9 @@ body {
   border-bottom: 1px solid #ccc;
 }
 
-.logbutton, .signbutton {
+.signbutton {
   padding: 5px 10px;
-  font-size: 16px;
+  font-size: 16px; 
   font-weight: bold;
   text-align: center;
   text-decoration: none;
@@ -78,7 +78,7 @@ body {
   position: absolute;
   cursor: pointer;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%);  
   z-index: 2;
 }
 
@@ -92,19 +92,46 @@ body {
   background-color: #26f277;
 }
 
-#login-btn {
-  top: 74.5%;
-  background-color: #87CEFA;
-  color: #fff;
-}
-
-#login-btn:hover {
-  background-color: #6bb9f0;
-}
-
 .button:hover {
   background-color: #6495ED;
 }
+
+.logbutton {
+  padding: -120px 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+#google-login-button {
+  top: 73.5%;
+  background-color: #5DADE2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+#google-logo {
+  width: 20px; /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+  margin-right: -4px;
+  margin-left: 6px;
+}
+
+#google-login-button:hover {
+  background-color: #3498db;
+}
+
 
 #info-button {
   position: absolute;
