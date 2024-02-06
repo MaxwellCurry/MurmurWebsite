@@ -31,12 +31,7 @@ googleLogIn.addEventListener("click", function(){
         googleLogIn.textContent = "Link";
         googleLogIn.removeEventListener("click", googleLogOutHandler);
         googleLogIn.addEventListener("click", googleLogInHandler);
-
-        const img = document.createElement('img');
-        img.src = '/images/google.png'; // Path to your google.png image
-        img.alt = 'Google Logo';
-        googleLogIn.prepend(img); // Add the image before the text in the button
-      
+        // Remove email display
         const userEmailDisplay = document.querySelector('p');
         if (userEmailDisplay) {
           userEmailDisplay.remove();
@@ -57,7 +52,7 @@ googleLogIn.addEventListener("click", function(){
 
         // Display user's email next to the button
         const userEmailDisplay = document.createElement('p');
-        userEmailDisplay.textContent = `Linked with: ${user.email}`;
+        userEmailDisplay.textContent = `Signed in as: ${user.email}`;
         userEmailDisplay.style.marginTop = '45px';
         document.body.appendChild(userEmailDisplay);
 
@@ -81,7 +76,26 @@ googleLogIn.addEventListener("click", function(){
   }
 });
 
+// Handler for sign-out functionality
+function googleLogOutHandler() {
+  signOut(auth)
+    .then(() => {
+      // Change button text and behavior to sign in
+      googleLogIn.textContent = "Link";
+      googleLogIn.removeEventListener("click", googleLogOutHandler);
+      googleLogIn.addEventListener("click", googleLogInHandler);
+      // Remove email display
+      const userEmailDisplay = document.querySelector('p');
+      if (userEmailDisplay) {
+        userEmailDisplay.remove();
+      }
+    })
+    .catch((error) => {
+      console.error('Sign out failed: ', error);
+    });
+}
 
+// Handler for sign-in functionality
 function googleLogInHandler() {
   signInWithPopup(auth, provider)
     .then((result) => {
@@ -95,8 +109,7 @@ function googleLogInHandler() {
       const userEmailDisplay = document.createElement('p');
       userEmailDisplay.textContent = `Signed in as: ${user.email}`;
       userEmailDisplay.style.marginTop = '45px';
-      // Append userEmailDisplay to the current tab (tab1)
-      document.getElementById('tab1').appendChild(userEmailDisplay);
+      document.body.appendChild(userEmailDisplay);
 
       // Change button text and behavior to sign out
       googleLogIn.textContent = "Sign Out";
@@ -117,22 +130,7 @@ function googleLogInHandler() {
     });
 }
 
-// Handler for sign-out functionality
-function googleLogOutHandler() {
-  signOut(auth)
-    .then(() => {
-      // Change button text and behavior to sign in
-      googleLogIn.textContent = "Link";
-      googleLogIn.removeEventListener("click", googleLogOutHandler);
-      googleLogIn.addEventListener("click", googleLogInHandler);
-      // Remove email display from the first tab (tab1)
-      const userEmailDisplay = document.getElementById('tab1').querySelector('p');
-      if (userEmailDisplay) {
-        userEmailDisplay.remove();
-      }
-    })
-    .catch((error) => {
-      console.error('Sign out failed: ', error);
-    });
-}
+
+
+
 
