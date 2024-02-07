@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Pastel Crayon';
+  src: url('/js/pastel.ttf') format('truetype'); /* Replace 'path/to/pastel-crayon.ttf' with the actual path to the font file */
+  /* You may also include additional src declarations for other font formats like woff, woff2, etc. */
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,16 +13,19 @@ body {
   background-color: #ffffff;
   background-image: url("/images/paper.png");
   background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-position: center center; 
 }
 
 #logo {
-  max-width: 100%;
+  max-width: 380px;
   height: auto;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -72%);
+  transform: translate(-50%, -82.1%);
   margin-bottom: 20px;
 }
 
@@ -24,41 +33,57 @@ body {
   position: absolute;
   top: 64.7%;
   left: 50%;
-  transform: translate(-50%, -122%);
-  width: 80%;
-  max-width: 200px;
+  transform: translate(-71%, -132%);
+  width: 100%;
+  max-width: 130px;
   display: flex;
   align-items: center;
   z-index: 3;
 }
 
 .search-bar {
+  font-family: 'Pastel Crayon', sans-serif;
   flex: 1;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  font-size: 17px;
+  border: 0px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  background-color: transparent;
+  background-image: url('/images/box.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: calc(0.8 * 256px); /* Width of the image */
+  height: calc(0.8 * 62px); /* Height of the image */
+  color: #6C8EBF; /* Pastel pink text color */
 }
 
 .search-icon {
   position: absolute;
-  top: 50%;
-  right: 10px;
+  top: 45.5%;
+  right: -39%;
+  width: 32px;
+  height: 28px;
   transform: translateY(-50%);
   cursor: pointer;
 }
 
+.search-bar:focus {
+  outline: none; /* Remove the blue outline when the search box is focused */
+}
+
 .schools-dropdown {
+  font-family: 'Pastel Crayon', sans-serif;
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
+  top: 90%;
+  left: 1px;
+  width: 142%;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   display: none;
   z-index: 1;
+  background-color: #DFDFDF;
 }
 
 .school-option {
@@ -68,28 +93,24 @@ body {
 }
 
 .signbutton {
-  padding: 5px 10px;
-  font-size: 16px; 
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  position: absolute;
-  cursor: pointer;
-  left: 50%;
-  transform: translateX(-50%);  
-  z-index: 2;
-}
+    display: inline-block;
+    background-image: url('/images/signup.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: calc(0.48 * 272px); /* Width of the image */
+    height: calc(0.48 * 92px); /* Height of the image */
+    position: absolute;
+    top: 62.8%;
+    left: 50%;
+    transform: translate(-40%, 0%);
+    display: flex;
+    align-items: center;
+    z-index: 1;
+} 
 
-#signup-btn {
-  top: 65.4%;
-  background-color: #16e569;
-  color: #fff;
-}
-
-#signup-btn:hover {
-  background-color: #26f277;
+.signbutton:hover {
+  transform: translate(-40%, -3.5%);
+  /* Move the button upward slightly on hover */
 }
 
 .button:hover {
@@ -97,49 +118,36 @@ body {
 }
 
 .logbutton {
-  padding: -120px 5px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 5px;
-  position: absolute;
-  cursor: pointer;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+    display: inline-block;
+    background-image: url('/images/login.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: calc(0.6 * 214px); /* Width of the image */
+    height: calc(0.6 * 88px); /* Height of the image */
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-47%, 0%);
+    display: flex;
+    align-items: center;
+    z-index: 1;
 }
 
-#google-login-button {
-  top: 73.5%;
-  background-color: #5DADE2;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+.logbutton:hover {
+  transform: translate(-47%, -3.5%);
+  /* Move the button upward slightly on hover */
 }
-
-#google-logo {
-  width: 20px; /* Adjust as needed */
-  height: 20px; /* Adjust as needed */
-  margin-right: -4px;
-  margin-left: 6px;
-}
-
-#google-login-button:hover {
-  background-color: #3498db;
-}
-
 
 #info-button {
   position: absolute;
   top: 21px;
   left: 21px;
-  width: 50px;
-  height: 50px;
-  background-color: #3cb3e5;
+  width: 101.5px;
+  height: 101.5px;
+  background-color: transparent;
+  background-image: url('/images/info.png');
+  background-size: contain;
+  background-repeat: no-repeat;
   border-radius: 50%;
   text-align: center;
   line-height: 43px;
@@ -149,7 +157,7 @@ body {
 }
 
 #info-button:hover {
-  background-color: #6bb9f0;
+transform: translate(0, -3.5%);
 }
 
 .popup-container {
@@ -190,20 +198,22 @@ body {
   position: absolute;
   top: 21px;
   right: 21px;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  background-image: url('/images/donate.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50%;
   text-align: center;
-  font-size: 37px;
-  background-color: #3cb3e5;
+  line-height: 43px;
+  font-size: 50px;
   color: #fff;
   cursor: pointer;
-  border: none;
-  border-radius: 50%;
 }
 
 #donate-button:hover {
-  background-color: #6bb9f0;
+  transform: translate(0, -3.5%);
 }
 
 
