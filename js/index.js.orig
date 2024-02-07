@@ -90,6 +90,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
 });
 
+<<<<<<< HEAD
 function redirectToSignup() {
   var schoolSearchInput = document.getElementById("schoolSearch");
   var schoolName = schoolSearchInput.value.trim();
@@ -98,3 +99,12 @@ function redirectToSignup() {
 function redirectToLogin() {
   window.location.href = "login.html";
 }
+=======
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("donate-button").addEventListener("click", function() {
+        window.open("https://midpenpost.org/tag/garv-virginkar/", "_blank");
+    });
+});
+>>>>>>> refs/remotes/origin/main

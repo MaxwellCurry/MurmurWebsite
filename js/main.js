@@ -23,11 +23,7 @@ googleLogIn.addEventListener("click", function(){
     // IdP data available using getAdditionalUserInfo(result)
     // ...
 		console.log(user)
-<<<<<<< HEAD
-		window.location.href = ""; //change location to like logged or something IDK LMFAOO
-=======
 		window.location.href = "/html/new.html";
->>>>>>> refs/remotes/origin/main
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -40,3 +36,11 @@ googleLogIn.addEventListener("click", function(){
   });
 
 })
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+  } else {
+    // No user is signed in.
+  }
+});
