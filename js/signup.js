@@ -15,6 +15,8 @@ function nextTab() {
 function submitSignUp() {
     window.location.href = "new.html";
 }
+
+let userEmailDisplay = null;
 function showTab(tabId, buttonIndex) {
     var tabButtons = document.querySelectorAll('.tab-button');
     tabButtons.forEach(function(button) {
@@ -29,5 +31,16 @@ function showTab(tabId, buttonIndex) {
     });
   
     document.getElementById(tabId).style.display = 'block';
+  
+    if (tabId === 'tab1') {
+      if (userEmailDisplay) {
+        userEmailDisplay.style.display = 'block'; // Update display style
+      }
+    } else {
+      if (userEmailDisplay) {
+        userEmailDisplay.style.display = 'none'; // Update display style
+      }
+    }
 }
+
 showTab('tab1', 0);
