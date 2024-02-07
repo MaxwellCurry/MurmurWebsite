@@ -17,6 +17,7 @@ function submitSignUp() {
 }
 
 let userEmailDisplay = null;
+
 function showTab(tabId, buttonIndex) {
     var tabButtons = document.querySelectorAll('.tab-button');
     tabButtons.forEach(function(button) {
@@ -42,5 +43,4 @@ function showTab(tabId, buttonIndex) {
       }
     }
 }
-
 showTab('tab1', 0);

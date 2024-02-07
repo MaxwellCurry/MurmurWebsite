@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { GoogleAuthProvider, connectAuthEmulator, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { firebaseConfig } from './config.js';
 
 // Initialize Firebase
@@ -9,38 +9,63 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 auth.language = 'en'; 
 
-// Shortcuts to DOM Elements.
-//const signInButton = document.getElementById('signup-button'); //dont worry for now
 const googleLogIn = document.getElementById("google-login-button");
-googleLogIn.addEventListener("click", function(){
-	signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-		console.log(user)
-		window.location.href = "/html/new.html";
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+let toggle = false; // Initialize toggle variable
+let login = false;
 
-})
+let emailDisplay = "Signed in as: ${user.email}"
+const originalButtonContent = {
+  text: "Link",
+  html: `<img src="/images/google.png" alt="Google Logo" id="google-logo">`
+};
 
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-  } else {
-    // No user is signed in.
+googleLogIn.addEventListener("click", function(event){
+  if(event.target === googleLogIn){
+    if(!toggle){
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          const user = result.user;
+        
+          if(login){
+            userEmailDisplay = document.createElement('p');
+            userEmailDisplay.textContent = `Signed in as: ${user.email}`;
+            userEmailDisplay.style.marginTop = '45px';
+            document.body.appendChild(userEmailDisplay);
+            toggle=true;
+            googleLogIn.textContent = "Sign Out";
+          }
+          else{
+            window.location.href = "/html/new.html";
+          }
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          const email = error.customData.email;
+          const credential = GoogleAuthProvider.credentialFromError(error);
+        });
+    } else {
+      if (userEmailDisplay) {
+        userEmailDisplay.remove();
+      }
+      toggle = false;
+      googleLogIn.innerHTML = 'Link' + originalButtonContent.html; 
+    }
   }
 });
+
+auth.onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log('User is signed in:', user);
+  } else {
+    // No user is signed in.
+    console.log('No user is signed in.');
+  }
+});
+
+if (window.location.href.includes("signup.html")) {
+  login = true;
+}
