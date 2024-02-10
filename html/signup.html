@@ -5,28 +5,37 @@
   <title>Sign Up - Murmur</title>
   <link rel="stylesheet" href="/css/signup.css">
   <title>Sign Up</title>
+  <link rel="stylesheet" href="/js/pastel.ttf">
 </head>
 <body>
   <img src="/images/bird.png" alt="Bird Image">
-  <div id="tab1" class="tab-content">
-    <h2>Personal Info</h2>
-    <div><input type="text" id="school" placeholder="Enter Your School"></div>
-    <div><input type="text" id="email" placeholder="Enter your First and Last Name"></div>
-    <button id="google-login-button" class="logbutton">Link<img src="/images/google.png" alt="Google Logo" id="google-logo"></button>
-    <button class="next-button" onclick="nextTab()">Next!</button>
+  <div class="center">
+    <div class="flip-card slide-in-left"> <!-- Added slide-in-left class -->
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div id="tab1" class="tab-content">
+            <h2>Personal Info</h2>
+            <div><input type="text" id="school" placeholder="Enter Your School"></div>
+            <div><input type="text" id="email" placeholder="Enter your First and Last Name"></div>
+            <button id="google-login-button" class="logbutton"></button>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div id="tab2" class="tab-content">
+            <h2 class="crush-title">Crushes List</h2>
+            <div><input type="text" class="crush-input" id="crush1" placeholder="Crush 1"></div>
+            <div><input type="text" class="crush-input" id="crush2" placeholder="Crush 2"></div>
+            <div><input type="text" class="crush-input" id="crush3" placeholder="Crush 3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="tab2" class="tab-content">
-    <h2 class="crush-title">Crushes List</h2>
-    <div><input type="text" class="crush-input" id="crush1" placeholder="Crush 1"></div>
-    <div><input type="text" class="crush-input" id="crush2" placeholder="Crush 2"></div>
-    <div><input type="text" class="crush-input" id="crush3" placeholder="Crush 3"></div>
-    <div><input type="text" class="crush-input" id="crush4" placeholder="Crush 4"></div>
-    <div><input type="text" class="crush-input" id="crush4" placeholder="Crush 5"></div>
-    <button class="signup-button" onclick="submitSignUp()">Sign Up!</button>
-  </div>
+  <button class="signup-button" onclick="submitSignUp()">Sign Up!</button>
+  
   <div class="tab-container">
-    <button class="tab-button" onclick="showTab('tab1', 0)"></button>
-    <button class="tab-button" onclick="showTab('tab2', 1)"></button>
+    <button class="tab-button" onclick="nextTab1()"></button>
+    <button class="tab-button" onclick="nextTab2()"></button>
   </div>
   <script src="/js/main.js" defer type="module"></script>
   <script src="/js/signup.js"></script>

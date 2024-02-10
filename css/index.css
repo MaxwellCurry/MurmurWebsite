@@ -19,14 +19,29 @@ body {
   background-position: center center; 
 }
 
+#hearts-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px; 
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-185%, -285.1%);
+  margin-bottom: 20px;
+}
+
 #logo {
-  max-width: 380px;
+  max-width: 350px;
   height: auto;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -82.1%);
+  transform: translate(-49%, -90.1%);
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .search-bar-container {
@@ -83,7 +98,7 @@ body {
   border-radius: 5px;
   display: none;
   z-index: 1;
-  background-color: #DFDFDF;
+  background-color: #feff9c;
 }
 
 .school-option {
@@ -109,7 +124,7 @@ body {
 } 
 
 .signbutton:hover {
-  transform: translate(-40%, -3.5%);
+  transform: translate(-40%, -5%);
   /* Move the button upward slightly on hover */
 }
 
@@ -134,30 +149,8 @@ body {
 }
 
 .logbutton:hover {
-  transform: translate(-47%, -3.5%);
+  transform: translate(-47%, -5%);
   /* Move the button upward slightly on hover */
-}
-
-#info-button {
-  position: absolute;
-  top: 21px;
-  left: 21px;
-  width: 101.5px;
-  height: 101.5px;
-  background-color: transparent;
-  background-image: url('/images/info.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 43px;
-  font-size: 50px;
-  color: #fff;
-  cursor: pointer;
-}
-
-#info-button:hover {
-transform: translate(0, -3.5%);
 }
 
 .popup-container {
@@ -165,13 +158,13 @@ transform: translate(0, -3.5%);
   top: 50%;
   left: 50.9%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 200, 100, 0.95);
+  background-color: #feff9c;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   display: none;
   z-index: 4;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Pastel Crayon', sans-serif;
 }
 
 .popup-container p {
@@ -196,12 +189,32 @@ transform: translate(0, -3.5%);
 
 #donate-button {
   position: absolute;
-  top: 21px;
+  top: 20.5px;
   right: 21px;
-  width: 100px;
-  height: 100px;
+  width: 98.5px;
+  height: 98.5px;
   background-color: transparent;
   background-image: url('/images/donate.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  line-height: 43px;
+  color: #fff;
+  cursor: pointer;
+}
+
+#donate-button:hover {
+  transform: translate(0, -3.5%);
+}
+
+#info-button {
+  position: absolute;
+  top: 20px;
+  left: 21px;
+  width: 101.5px;
+  height: 101.5px;
+  background-color: transparent;
+  background-image: url('/images/info.png');
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 50%;
@@ -212,8 +225,8 @@ transform: translate(0, -3.5%);
   cursor: pointer;
 }
 
-#donate-button:hover {
-  transform: translate(0, -3.5%);
+#info-button:hover {
+transform: translate(0, -3.5%);
 }
 
 

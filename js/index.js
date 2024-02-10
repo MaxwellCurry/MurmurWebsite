@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var popupText = document.createElement("div");
 	popupText.classList.add("popup-text");
-	popupText.textContent = "Introducing the Murmur! Simply input your school and the names of people you secretly like, and if there's a mutual crush, you'll both get a notification signifying a match. Until you both decide to accept the match, identities will remain anonymous. Enjoy!";
+	popupText.textContent = "Introducing the Murmur! Simply input your school and the names of people you secretly like, and if there's a mutual crush, you'll both get a notification signifying a match! Until you both decide to accept the match, identities will remain anonymous. Enjoy!";
 
 	var closePopup = document.createElement("div");
 	closePopup.classList.add("close-popup");
@@ -98,3 +98,36 @@ function redirectToSignup() {
 function redirectToLogin() {
   window.location.href = "login.html";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var heartsGif = document.getElementById("hearts-gif");
+  var speechBubble = document.getElementById("speech-bubble");
+
+  var logo = document.getElementById("logo");
+  var holdingMouseDown = false;
+
+  logo.addEventListener("mousedown", function () {
+    holdingMouseDown = true;
+    logo.src = "/images/logoeye.png";
+    heartsGif.classList.add("hidden"); // Hide hearts GIF
+  });
+
+  logo.addEventListener("mouseup", function () {
+    holdingMouseDown = false;
+    logo.src = "/images/logo.png";
+    heartsGif.classList.remove("hidden"); // Show hearts GIF
+  });
+
+  // Reset image source if mouse leaves the logo area while holding mouse down
+  logo.addEventListener("mouseleave", function () {
+    if (holdingMouseDown) {
+      holdingMouseDown = false;
+      logo.src = "/images/logo.png";
+      heartsGif.classList.remove("hidden"); // Show hearts GIF
+    }
+  });
+});
+
+
+
+

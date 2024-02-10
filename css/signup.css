@@ -1,7 +1,38 @@
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@font-face {
+  font-family: 'Pastel Crayon';
+  src: url('/js/pastel.ttf') format('truetype'); /* Replace 'path/to/pastel-crayon.ttf' with the actual path to the font file */
+  /* You may also include additional src declarations for other font formats like woff, woff2, etc. */
+}
+
 body {
 	text-align: center;
 	font-family: Arial, sans-serif;
-	background-image: url('/images/paper.png');
 	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0;
@@ -14,20 +45,106 @@ body {
 	overflow: hidden;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 27vh;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 516.6px; /* Adjust width as needed */
+  height: 310.2px;
+  perspective: 1000px;
+  z-index: 2;
+}
+.slide-in-left {
+	 animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  z-index: 2;
+}
+
+.flip-card-front {
+  background-color: transparent;
+  background-image: url('/images/indexcard.png');
+  background-size: cover;
+  color: black;
+  z-index: 2;
+}
+
+.flip-card-back {
+  background-color: transparent;
+  background-image: url('/images/indexcard2.png');
+  background-size: cover;
+  color: white;
+  transform: rotateY(-180deg);
+  z-index: 2;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  position: relative; /* Change from absolute to relative */
+  margin-top: 66px; /* Adjust margin-top as needed */
+  margin-left: -8px;
+}
+
+.tab-button {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  border: none;
+  margin: 0 3px; /* Add some space between buttons */
+}
+
+.active-tab-button {
+	background-color: #555;
+	color: white;
+}
+
+
+.tab-content {
+	display: none;
+}
+
 img {
 	max-width: 400px;
 	z-index: 2;
+    margin-top: -50px;
 }
 
 h2 {
 	color: #6495ED;
-	margin-top: -40px;
+	margin-top: 13px;
+    font-family: 'Pastel Crayon', sans-serif; 
 }
 
 .crush-title {
 	color: #6495ED;
-	margin-top: -47px;
+	margin-top: 14px;
 	margin-bottom: 9px
+    font-family: 'Pastel Crayon', sans-serif;
 }
 
 input {
@@ -38,6 +155,8 @@ input {
 	border: 1px solid #ccc;
 	border-radius: 20px;
 	outline: none;
+    background-color: transparent;
+    font-family: 'Pastel Crayon', sans-serif; 
 }
 
 .crush-input {
@@ -48,6 +167,7 @@ input {
 	border: 1px solid #ccc;
 	border-radius: 20px;
 	outline: none;
+    background-color: transparent;
 }
 
 input::placeholder {
@@ -68,56 +188,40 @@ input::placeholder {
 	margin-left: -50px;
 }
 
+
+
 .next-button:hover {
 	background-color: #6bb9f0;
 }
 
 .signup-button {
-	background-color: #16e569;
-	color: white;
-	padding: 15px 30px;
-	border: none;
-	border-radius: 20px;
-	cursor: pointer;
-	font-size: 16px;
-	position: absolute;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	margin-left: -65px;
+  background-color: #16e569;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  margin-left: -65px;
 }
 
-.signup-button:hover {
-	background-color: #26f277;
+.signup-button.disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
-.tab-container {
-	display: flex;
-	justify-content: space-around;
-	position: absolute;
-	width: 50px;
-	top: 650px;
-	margin-top: 10px;
-	left: 50%;
-	transform: translateX(-50%);
+.signup-button.disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
-.tab-button {
-	cursor: pointer;
-	width: 20px;
-	height: 20px;
-	background-color: #ccc;
-	border: none;
-	margin: 0 2px;
-}
-
-.active-tab-button {
-	background-color: #555;
-	color: white;
-}
-
-
-.tab-content {
-	display: none;
+.signup-button:hover:not(.disabled) {
+  background-color: #26f277;
 }
 
 .logbutton {
@@ -126,6 +230,8 @@ input::placeholder {
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  width: calc(0.55 * 214px); /* Width of the image */
+  height: calc(0.55 * 88px); /* Height of the image */
   border: none;
   border-radius: 5px;
   position: absolute;
@@ -133,27 +239,24 @@ input::placeholder {
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  background-image: url('/images/link.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #google-login-button {
-  background-color: #5DADE2;
+  background-color: transparent;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
   position: absolute;
-  margin-top: 0px;
-  margin-bottom: 10px;
-}
-
-#google-logo {
-  width: 20px; /* Adjust as needed */
-  height: 20px; /* Adjust as needed */
-  margin-right: -4px;
-  margin-left: 6px;
+  margin-top: 36px;
+  margin-bottom: 0px;
+  
 }
 
 #google-login-button:hover {
-  background-color: #3498db;
+  transform: translate(-50%, -5%);
 }
