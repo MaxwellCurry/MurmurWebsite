@@ -9,6 +9,7 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 auth.language = 'en'; 
 
+
 const googleLogIn = document.getElementById("google-login-button");
 let toggle = false; // Initialize toggle variable
 let login = false;
@@ -26,17 +27,16 @@ googleLogIn.addEventListener("click", function(event){
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           const user = result.user;
+          var dynamicVariableSpan = document.getElementById("dynamicVariable");
         
-            if(login){
-              userEmailDisplay = document.createElement('p');
-              userEmailDisplay.textContent = `Signed in as: ${user.email}`;
-              userEmailDisplay.style.marginTop = '-50px';
-              userEmailDisplay.style.zIndex = '10';
-              document.body.appendChild(userEmailDisplay);
-              toggle=true;
-              googleLogIn.innerHTML = originalButtonContent.html;
-              toggleSignUpButton(); // Call toggleSignUpButton after sign-in
-            }
+          if(login){
+            userEmailDisplay = document.createElement('p');
+            dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
+            toggle = true;
+            originalButtonContent.html = googleLogIn.innerHTML;
+            googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
+            toggleSignUpButton(); // Call toggleSignUpButton after sign-in
+          }
           else{
             window.location.href = "/html/new.html";
           }
@@ -52,7 +52,7 @@ googleLogIn.addEventListener("click", function(event){
         userEmailDisplay.remove();
       }
       toggle = false;
-      googleLogIn.innerHTML = 'Link' + originalButtonContent.html;
+      googleLogIn.style.backgroundImage = "url('/images/link.png')";
       toggleSignUpButton(); // Call toggleSignUpButton after sign-out
       auth.signOut().then(() => {
       }).catch((error) => {
@@ -72,19 +72,16 @@ auth.onAuthStateChanged(function(user) {
     signUpButton.disabled = false;
     signUpButton.classList.remove('disabled');
   } else {
-    // No user is signed in.
+    var dynamicVariableSpan = document.getElementById("dynamicVariable");
     console.log('No user is signed in.');
-    // Disable the signup button
     signUpButton.disabled = true;
     signUpButton.classList.add('disabled');
+    dynamicVariableSpan.textContent = ` `;
   }
 });
-
-var signUpButton = document.querySelector('.signup-button');
-signUpButton.disabled = true;
-signUpButton.classList.add('disabled');
 
 
 if (window.location.href.includes("signup.html")) {
   login = true;
 }
+

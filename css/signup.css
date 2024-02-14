@@ -43,13 +43,15 @@ body {
 	background-image: url('/images/paper.png');
 	background-size: cover;
 	overflow: hidden;
+    z-index: 1;
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 27vh;
+  height: 12vh;
+  z-index: 1;
 }
 
 .flip-card {
@@ -57,10 +59,7 @@ body {
   width: 516.6px; /* Adjust width as needed */
   height: 310.2px;
   perspective: 1000px;
-  z-index: 2;
-}
-.slide-in-left {
-	 animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  z-index: 1;
 }
 
 .flip-card-inner {
@@ -103,20 +102,26 @@ body {
 
 .tab-container {
   display: flex;
-  justify-content: center;
   position: relative; /* Change from absolute to relative */
-  margin-top: 66px; /* Adjust margin-top as needed */
+  margin-top: 59.5px; /* Adjust margin-top as needed */
   margin-left: -8px;
+  z-index: 1;
+  justify-content: center;
 }
 
 .tab-button {
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  background-color: #ccc;
-  border: none;
-  margin: 0 3px; /* Add some space between buttons */
+  position: relative; /* Ensure the button is positioned relatively */
+  width: 0px 200px;
+  margin: 0 15px;
 }
+
+.tab-button img {
+  position: absolute; /* Position the image absolutely within the button */
+  top: 50%; /* Align the image vertically at the center of the button */
+  left: 50%; /* Align the image horizontally at the center of the button */
+  transform: translate(-50%, 67%); /* Adjust the image to be centered within the button */
+}
+
 
 .active-tab-button {
 	background-color: #555;
@@ -129,9 +134,10 @@ body {
 }
 
 img {
-	max-width: 400px;
+	max-width: 350px;
 	z-index: 2;
-    margin-top: -50px;
+    margin-top: -20px;
+    margin-left: 13px;
 }
 
 h2 {
@@ -139,6 +145,17 @@ h2 {
 	margin-top: 13px;
     font-family: 'Pastel Crayon', sans-serif; 
 }
+
+/*
+h3 {
+  color: #3cb043;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  font-family: 'Pastel Crayon', sans-serif; 
+  text-decoration: underline;
+}
+*/
+
 
 .crush-title {
 	color: #6495ED;
@@ -195,33 +212,40 @@ input::placeholder {
 }
 
 .signup-button {
-  background-color: #16e569;
-  color: white;
+  background-color: transparent;
+  color: transparent;
   padding: 15px 30px;
   border: none;
-  border-radius: 20px;
   cursor: pointer;
   font-size: 16px;
   position: absolute;
-  margin-top: 100px;
+  margin-top: 102px;
   margin-bottom: 10px;
-  margin-left: -65px;
+  margin-left: -77px; /* Adjust the left margin to center the button */
+  width: 149.605px; /* Set the width to auto to fit the content */
+  height: 70.854px;
+  border-radius: 7px;
+}
+
+
+.signup-button img {
+  position: relative; /* Position the image absolutely */
+  top: 22px; /* Position the image at the top of the button */
+  left: -32px; /* Position the image at the left of the button */
+  width: 170%; /* Set the width of the image to match the button */
+  height: 158%; /* Set the height of the image to match the button */
+  opacity: 1; /* Optionally, set the opacity of the image */
+  pointer-events: none; /* Ensure the image doesn't interfere with button clicks */
 }
 
 .signup-button.disabled {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
-}
-
-.signup-button.disabled {
-  background-color: #ccc;
-  color: #666;
+  background-color: transparent;
+  color: transparent;
   cursor: not-allowed;
 }
 
 .signup-button:hover:not(.disabled) {
-  background-color: #26f277;
+  transform: translate(0%, -5%);
 }
 
 .logbutton {
@@ -252,11 +276,26 @@ input::placeholder {
   justify-content: center;
   padding: 10px;
   position: absolute;
-  margin-top: 36px;
+  margin-top: 0px;
   margin-bottom: 0px;
+  margin-left: -4px;
   
 }
 
 #google-login-button:hover {
   transform: translate(-50%, -5%);
+}
+
+.signed-in-message {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10;
+  font-family: 'Pastel Crayon', sans-serif; 
+  position: absolute;
+  margin-top: 33.8px;
+  left: 50%;
+  transform: translateX(-52%);
 }
