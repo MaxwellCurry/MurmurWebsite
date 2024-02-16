@@ -1,5 +1,3 @@
-export { userEmail }
-
 var schoolInput = document.getElementById('school');
 var emailInput = document.getElementById('email');
 var crushInputs = document.querySelectorAll('.crush-input');
@@ -249,7 +247,6 @@ function checkDynamicVariable() {
 checkDynamicVariable();
 // Set up an interval to check dynamicVariable periodically
 setInterval(checkDynamicVariable, 100); // Adjust the interval duration as needed
-
 
 
 

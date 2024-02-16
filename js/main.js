@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
-var userEmail; 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { firebaseConfig } from './config.js';
-export { userEmail }
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -11,6 +9,8 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 auth.language = 'en'; 
 let currentUser = null;
+
+var userEmail = "";
 
 
 const googleLogIn = document.getElementById("google-login-button");
@@ -81,7 +81,7 @@ auth.onAuthStateChanged(function(user) {
     console.log('No user is signed in.');
     signUpButton.disabled = true;
     signUpButton.classList.add('disabled');
-    currentUser = null;
+    userEmail = null;
     dynamicVariableSpan.textContent = ` `;
   }
 });
