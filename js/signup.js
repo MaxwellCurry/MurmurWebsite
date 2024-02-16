@@ -1,6 +1,7 @@
 var schoolInput = document.getElementById('school');
 var emailInput = document.getElementById('email');
 var crushInputs = document.querySelectorAll('.crush-input');
+var crushEmailInputs = document.querySelectorAll('.crushemail-input');
 var signupButton = document.querySelector('.signup-button');
 var signupImage = document.createElement('img');
 
@@ -90,15 +91,26 @@ showTab('tab1', 0);
 
 
 var signUpButton = document.querySelector('.signup-button');
+
+// Add event listeners to crush inputs
+crushInputs.forEach(function(crushInput) {
+  crushInput.addEventListener('input', toggleSignUpButton);
+});
+
+// Add event listeners to crush email inputs
+crushEmailInputs.forEach(function(crushEmailInput) {
+  crushEmailInput.addEventListener('input', toggleSignUpButton);
+});
+
 signUpButton.disabled = true;
 signUpButton.classList.add('disabled');
 
 
 schoolInput.addEventListener('input', toggleSignUpButton);
 emailInput.addEventListener('input', toggleSignUpButton);
-crushInputs.forEach(function(crushInput) {
-  crushInput.addEventListener('input', toggleSignUpButton);
-});
+// Add event listeners to crush inputs
+
+
 
 signupImage.src = "/images/signupgrey.png"; // Set the image source
 signupImage.alt = "Sign Up"; // Set the alt text for accessibility
@@ -108,32 +120,42 @@ function toggleSignUpButton() {
   if (userSignedIn) {
     if (schoolInput.value.trim() !== '' && emailInput.value.trim() !== '') {
       var allCrushesFilled = true;
+      var allCrushesEmailsFilled = true;
+
       crushInputs.forEach(function(crushInput) {
         if (crushInput.value.trim() === '') {
           allCrushesFilled = false;
         }
       });
-      signUpButton.disabled = !allCrushesFilled;
+
+      crushEmailInputs.forEach(function(crushEmailInput) {
+        if (crushEmailInput.value.trim() === '') {
+          allCrushesEmailsFilled = false;
+        }
+      });
+
+      // Enable signup button only if both crush inputs and crush email inputs are filled
+      signUpButton.disabled = !(allCrushesFilled && allCrushesEmailsFilled);
     } else {
       signUpButton.disabled = true;
     }
 
+    // Update button styling based on disabled state
     if (signUpButton.disabled) {
       signUpButton.classList.add('disabled');
     } else {
       signUpButton.classList.remove('disabled');
     }
-    
   } else {
     signUpButton.disabled = true;
     signUpButton.classList.add('disabled');
   }
-  if(signUpButton.disabled == true){
-    signupImage.src = "/images/signupgrey.png";
-  } else{
-    signupImage.src = "/images/signup.png";
-  }
+
+  // Update the image source based on signup button status
+  signupImage.src = signUpButton.disabled ? "/images/signupgrey.png" : "/images/signup.png";
 }
+
+
 
 function submitSignUp() {
   // Check if all fields are filled
@@ -145,10 +167,32 @@ function submitSignUp() {
       }
     });
 
-    if (allCrushesFilled) {
-      window.location.href = "new.html";
+    // Check if all crush email fields are filled
+    var allCrushEmailsFilled = true;
+    var crushEmailInputs = document.querySelectorAll('.crushemail-input');
+    crushEmailInputs.forEach(function(emailInput) {
+      if (emailInput.value.trim() === '') {
+        allCrushEmailsFilled = false;
+      }
+    });
+
+    if (allCrushesFilled && allCrushEmailsFilled) {
+      
+      
+      
+      var crushList = [document.getElementById('crush1').value.trim(), document.getElementById('crush2').value.trim(), document.getElementById('crush3').value.trim()];
+      var crushEmailList = [document.getElementById('crush1email').value.trim(), document.getElementById('crush2email').value.trim(), document.getElementById('crush3email').value.trim()];
+      
+      var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
+      
+      
+      console.log("buhhhh");
+      console.log(userData);
+      
+      
+      
     } else {
-      alert('Please fill all crush fields.');
+      alert('Please fill all crush and crush email fields.');
     }
   } else {
     alert('Please fill all required fields.');
@@ -169,11 +213,8 @@ function checkDynamicVariable() {
     signupImage.src = "/images/signupgrey.png";
   }
 }
-
 // Call checkDynamicVariable initially
 checkDynamicVariable();
-
-
 // Set up an interval to check dynamicVariable periodically
 setInterval(checkDynamicVariable, 100); // Adjust the interval duration as needed
 

@@ -175,22 +175,36 @@ input {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
-	border-radius: 20px;
+	border-radius: 6px;
 	outline: none;
     background-color: transparent;
     font-family: 'Pastel Crayon', sans-serif; 
 }
 
 .crush-input {
-	width: 180px;
-	padding: 10px;
-	margin-top: 1px;
-	margin-bottom: 1px;
-	border: 1px solid #ccc;
-	border-radius: 20px;
-	outline: none;
+    width: 115px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    margin-left: 0px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
     background-color: transparent;
 }
+
+.crushemail-input {
+    width: 150px; /* Adjust width to accommodate margin */
+    padding: 10px;
+    margin-top: 1px;
+    margin-left: 0px; /* Adjust margin to position to the right */
+    margin-bottom: 1px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: transparent;
+}
+
 
 input::placeholder {
 	color: #aaa;

@@ -8,6 +8,7 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 auth.language = 'en'; 
+let currentUser = null;
 
 
 const googleLogIn = document.getElementById("google-login-button");
@@ -68,6 +69,7 @@ auth.onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     console.log('User is signed in:', user);
+    currentUser = user;
     // Enable the signup button
     signUpButton.disabled = false;
     signUpButton.classList.remove('disabled');
@@ -76,6 +78,7 @@ auth.onAuthStateChanged(function(user) {
     console.log('No user is signed in.');
     signUpButton.disabled = true;
     signUpButton.classList.add('disabled');
+    currentUser = null;
     dynamicVariableSpan.textContent = ` `;
   }
 });
