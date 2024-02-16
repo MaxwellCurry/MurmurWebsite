@@ -5,12 +5,15 @@ var crushEmailInputs = document.querySelectorAll('.crushemail-input');
 var signupButton = document.querySelector('.signup-button');
 var signupImage = document.createElement('img');
 
+var userEmail = "";
+
 class user {
   constructor(name, school, crushList) {
     this.name = name; 
     this.school = school; 
     this.crushList = crushList; 
-    this.email = userEmail; 
+    this.userEmail = userEmail;
+//    this.email = userEmail; 
   }
 
   getName() { 
@@ -24,10 +27,14 @@ class user {
   getCrushList() { 
     return this.crushList; 
   }
-
+  
   getEmail() { 
-    return this.email; 
+    return this.userEmail; 
   }
+
+//  getEmail() { 
+//    return this.email; 
+//  }
   //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
 }
 
@@ -213,11 +220,10 @@ function submitSignUp() {
       //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
       
       
-      console.log(user.getName);
-      console.log(user.getSchool); 
-      console.log(user.email); 
-      console.log(user.getCrushList)
-      console.log(userData);
+      console.log(userData.getName());
+      console.log(userData.getSchool()); 
+      console.log(userData.getCrushList())
+      console.log(userData.getEmail())
       
       
       
@@ -247,7 +253,6 @@ function checkDynamicVariable() {
 checkDynamicVariable();
 // Set up an interval to check dynamicVariable periodically
 setInterval(checkDynamicVariable, 100); // Adjust the interval duration as needed
-
 
 
 

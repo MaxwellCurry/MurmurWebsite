@@ -10,7 +10,6 @@ const auth = getAuth(app);
 auth.language = 'en'; 
 let currentUser = null;
 
-var userEmail = "";
 
 
 const googleLogIn = document.getElementById("google-login-button");
@@ -90,4 +89,3 @@ auth.onAuthStateChanged(function(user) {
 if (window.location.href.includes("signup.html")) {
   login = true;
 }
-
