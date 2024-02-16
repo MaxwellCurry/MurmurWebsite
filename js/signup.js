@@ -1,3 +1,5 @@
+export { userEmail }
+
 var schoolInput = document.getElementById('school');
 var emailInput = document.getElementById('email');
 var crushInputs = document.querySelectorAll('.crush-input');
@@ -5,17 +7,31 @@ var crushEmailInputs = document.querySelectorAll('.crushemail-input');
 var signupButton = document.querySelector('.signup-button');
 var signupImage = document.createElement('img');
 
+class user {
+  constructor(name, school, crushList) {
+    this.name = name; 
+    this.school = school; 
+    this.crushList = crushList; 
+    this.email = userEmail; 
+  }
 
-function updateSpeechBubblePosition() {
-  const birdImg = document.getElementById("birdImg");
-  const speechBubble = document.getElementById("speechBubble");
-  const imgRect = birdImg.getBoundingClientRect();
-  speechBubble.style.left = (imgRect.left + birdImg.offsetWidth) + "px"; 
-  speechBubble.style.top = (imgRect.top - speechBubble.offsetHeight) + "px";
+  getName() { 
+    return this.name; 
+  }
+
+  getSchool() { 
+    return this.school; 
+  }
+
+  getCrushList() { 
+    return this.crushList; 
+  }
+
+  getEmail() { 
+    return this.email; 
+  }
+  //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
 }
-updateSpeechBubblePosition();
-window.addEventListener("resize", updateSpeechBubblePosition);
-
 
 
 signupButton.appendChild(signupImage);
@@ -177,16 +193,32 @@ function submitSignUp() {
     });
 
     if (allCrushesFilled && allCrushEmailsFilled) {
+      currName = document.getElementById('email').value.trim(); 
+      currSchool = document.getElementById('school').value.trim(); 
+
+      crush1 = document.getElementById('crush1').value.trim(); 
+      crush2 = document.getElementById('crush2').value.trim(); 
+      crush3 = document.getElementById('crush3').value.trim(); 
+
+      crush1Email = document.getElementById('crush1email').value.trim(); 
+      crush2Email = document.getElementById('crush2email').value.trim(); 
+      crush3Email = document.getElementById('crush3email').value.trim(); 
+            
+      
+      const emailMap = new Map(); 
+      
+      emailMap.set(crush1, crush1Email); 
+      emailMap.set(crush2, crush2Email); 
+      emailMap.set(crush3, crush3Email); 
+      
+      var userData = new user(currName, currSchool, emailMap); 
+      //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
       
       
-      
-      var crushList = [document.getElementById('crush1').value.trim(), document.getElementById('crush2').value.trim(), document.getElementById('crush3').value.trim()];
-      var crushEmailList = [document.getElementById('crush1email').value.trim(), document.getElementById('crush2email').value.trim(), document.getElementById('crush3email').value.trim()];
-      
-      var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
-      
-      
-      console.log("buhhhh");
+      console.log(user.getName);
+      console.log(user.getSchool); 
+      console.log(user.email); 
+      console.log(user.getCrushList)
       console.log(userData);
       
       
