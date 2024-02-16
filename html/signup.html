@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/js/pastel.ttf">
 </head>
 <body>
-  <img src="/images/bird.png" alt="Bird Image">
+  <img id="birdImg" src="/images/bird.png" alt="Bird Image"> 
   <div class="center">
     <div class="flip-card slide-in-left">
       <div class="flip-card-inner">
@@ -16,6 +16,7 @@
             <h2>Personal Info</h2>
             <div><input type="text" id="school" placeholder="Enter Your School"></div>
             <div><input type="text" id="email" placeholder="Enter your First and Last Name"></div>
+<!--            <h3>Link Your School Email:</h3>-->
             <p class="signed-in-message"><span id="dynamicVariable"></span></p>
             <button id="google-login-button" class="logbutton"></button>
           </div>
@@ -40,6 +41,9 @@
     <button id="tabButton2" class="tab-button" onclick="nextTab2()">
       <img src="/images/light.png" alt="Tab 2">
     </button>
+  </div>
+  
+  <div id="speechBubble">
   </div>
 
   <script src="/js/main.js" defer type="module"></script>

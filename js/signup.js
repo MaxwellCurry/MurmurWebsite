@@ -4,9 +4,20 @@ var crushInputs = document.querySelectorAll('.crush-input');
 var signupButton = document.querySelector('.signup-button');
 var signupImage = document.createElement('img');
 
-// Append the image to the signup button
-signupButton.appendChild(signupImage);
 
+function updateSpeechBubblePosition() {
+  const birdImg = document.getElementById("birdImg");
+  const speechBubble = document.getElementById("speechBubble");
+  const imgRect = birdImg.getBoundingClientRect();
+  speechBubble.style.left = (imgRect.left + birdImg.offsetWidth) + "px"; 
+  speechBubble.style.top = (imgRect.top - speechBubble.offsetHeight) + "px";
+}
+updateSpeechBubblePosition();
+window.addEventListener("resize", updateSpeechBubblePosition);
+
+
+
+signupButton.appendChild(signupImage);
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -164,7 +175,7 @@ checkDynamicVariable();
 
 
 // Set up an interval to check dynamicVariable periodically
-setInterval(checkDynamicVariable, 1); // Adjust the interval duration as needed
+setInterval(checkDynamicVariable, 100); // Adjust the interval duration as needed
 
 
 

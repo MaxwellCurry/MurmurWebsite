@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - Murmur</title>
+  <link rel="stylesheet" href="/css/signup.css">
+  <link rel="stylesheet" href="/js/pastel.ttf">
+</head>
+<body>
+  <img src="/images/bird.png" alt="Bird Image">
+  <div class="center">
+    <div class="flip-card slide-in-left">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div id="tab1" class="tab-content">
+            <h2>Personal Info</h2>
+            <div><input type="text" id="school" placeholder="Enter Your School"></div>
+            <div><input type="text" id="email" placeholder="Enter your First and Last Name"></div>
+            <p class="signed-in-message"><span id="dynamicVariable"></span></p>
+            <button id="google-login-button" class="logbutton"></button>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div id="tab2" class="tab-content">
+            <h2 class="crush-title">Crushes List</h2>
+            <div><input type="text" class="crush-input" id="crush1" placeholder="Crush 1"></div>
+            <div><input type="text" class="crush-input" id="crush2" placeholder="Crush 2"></div>
+            <div><input type="text" class="crush-input" id="crush3" placeholder="Crush 3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="signup-button" onclick="submitSignUp()"></button>
+  
+  <div class="tab-container">
+    <button id="tabButton1" class="tab-button" onclick="nextTab1()">
+      <img src="/images/dark.png" alt="Tab 1">
+    </button>
+    <button id="tabButton2" class="tab-button" onclick="nextTab2()">
+      <img src="/images/light.png" alt="Tab 2">
+    </button>
+  </div>
+
+  <script src="/js/main.js" defer type="module"></script>
+  <script src="/js/signup.js"></script>
+</body>
+</html>

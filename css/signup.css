@@ -39,18 +39,38 @@ body {
 	padding: 0;
 	position: relative;
 	height: 100vh;
-	background-color: #ffffff;
-	background-image: url('/images/paper.png');
-	background-size: cover;
+    background-color: #ffffff;
+    background-image: url("/images/paper.png");
+    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: center center; 
 	overflow: hidden;
     z-index: 1;
+}
+
+img {
+    justify-content: center;
+    text-align: center;
+	max-width: 300px;
+	z-index: 2;
+    margin-top: 30px;
+    margin-left: -10px;
+}
+
+h2 {
+	color: #6495ED;
+	margin-top: 17px;
+    margin-bottom: 8px;
+    font-family: 'Pastel Crayon', sans-serif; 
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 12vh;
+  margin-top: 10px;
   z-index: 1;
 }
 
@@ -69,7 +89,6 @@ body {
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   z-index: 2;
 }
 
@@ -86,9 +105,10 @@ body {
 .flip-card-front {
   background-color: transparent;
   background-image: url('/images/indexcard.png');
-  background-size: cover;
+  background-size: contain;
   color: black;
   z-index: 2;
+  background-repeat: no-repeat;
 }
 
 .flip-card-back {
@@ -103,7 +123,7 @@ body {
 .tab-container {
   display: flex;
   position: relative; /* Change from absolute to relative */
-  margin-top: 59.5px; /* Adjust margin-top as needed */
+  margin-top: 14px; /* Adjust margin-top as needed */
   margin-left: -8px;
   z-index: 1;
   justify-content: center;
@@ -119,7 +139,7 @@ body {
   position: absolute; /* Position the image absolutely within the button */
   top: 50%; /* Align the image vertically at the center of the button */
   left: 50%; /* Align the image horizontally at the center of the button */
-  transform: translate(-50%, 67%); /* Adjust the image to be centered within the button */
+  transform: translate(-21%, -125%); /* Adjust the image to be centered within the button */
 }
 
 
@@ -133,33 +153,18 @@ body {
 	display: none;
 }
 
-img {
-	max-width: 350px;
-	z-index: 2;
-    margin-top: -20px;
-    margin-left: 13px;
-}
-
-h2 {
-	color: #6495ED;
-	margin-top: 13px;
-    font-family: 'Pastel Crayon', sans-serif; 
-}
-
-/*
 h3 {
-  color: #3cb043;
-  margin-top: 8px;
-  margin-bottom: 6px;
+  color: #77DD77;
+  margin-top: 0.5px;
+  margin-bottom: 2.5px;
   font-family: 'Pastel Crayon', sans-serif; 
   text-decoration: underline;
 }
-*/
 
 
 .crush-title {
 	color: #6495ED;
-	margin-top: 14px;
+	margin-top: 30px;
 	margin-bottom: 9px
     font-family: 'Pastel Crayon', sans-serif;
 }
@@ -219,21 +224,21 @@ input::placeholder {
   cursor: pointer;
   font-size: 16px;
   position: absolute;
-  margin-top: 102px;
+  margin-top: 48px;
   margin-bottom: 10px;
-  margin-left: -77px; /* Adjust the left margin to center the button */
+  margin-left: -75.1px; /* Adjust the left margin to center the button */
   width: 149.605px; /* Set the width to auto to fit the content */
-  height: 70.854px;
+  height: 60.854px;
   border-radius: 7px;
 }
 
 
 .signup-button img {
   position: relative; /* Position the image absolutely */
-  top: 22px; /* Position the image at the top of the button */
-  left: -32px; /* Position the image at the left of the button */
-  width: 170%; /* Set the width of the image to match the button */
-  height: 158%; /* Set the height of the image to match the button */
+  top: -45px; /* Position the image at the top of the button */
+  left: -20px; /* Position the image at the left of the button */
+  width: 149.605px;
+  height: 60.854px;
   opacity: 1; /* Optionally, set the opacity of the image */
   pointer-events: none; /* Ensure the image doesn't interfere with button clicks */
 }
@@ -276,9 +281,9 @@ input::placeholder {
   justify-content: center;
   padding: 10px;
   position: absolute;
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 0px;
-  margin-left: -4px;
+  margin-left: -3px;
   
 }
 
@@ -299,3 +304,5 @@ input::placeholder {
   left: 50%;
   transform: translateX(-52%);
 }
+
+
