@@ -5,37 +5,16 @@ var crushEmailInputs = document.querySelectorAll('.crushemail-input');
 var signupButton = document.querySelector('.signup-button');
 var signupImage = document.createElement('img');
 
+
 var userEmail = "";
 
-class user {
+class User {
   constructor(name, school, crushList) {
     this.name = name; 
     this.school = school; 
     this.crushList = crushList; 
     this.userEmail = userEmail;
-//    this.email = userEmail; 
   }
-
-  getName() { 
-    return this.name; 
-  }
-
-  getSchool() { 
-    return this.school; 
-  }
-
-  getCrushList() { 
-    return this.crushList; 
-  }
-  
-  getEmail() { 
-    return this.userEmail; 
-  }
-
-//  getEmail() { 
-//    return this.email; 
-//  }
-  //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
 }
 
 
@@ -216,17 +195,12 @@ function submitSignUp() {
       emailMap.set(crush2, crush2Email); 
       emailMap.set(crush3, crush3Email); 
       
-      var userData = new user(currName, currSchool, emailMap); 
+      var userData = new User(currName, currSchool, emailMap); 
       //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
       
-      
-      console.log(userData.getName());
-      console.log(userData.getSchool()); 
-      console.log(userData.getCrushList())
-      console.log(userData.getEmail())
-      
-      
-      
+      // In signup.js
+      window.globalFunctions.submitData(userData);
+//			window.location.href = "new.html";
     } else {
       alert('Please fill all crush and crush email fields.');
     }
