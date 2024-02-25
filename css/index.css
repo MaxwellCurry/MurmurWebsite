@@ -13,10 +13,7 @@ body {
   background-color: #ffffff;
   background-image: url("/images/paper.png");
   background-size: cover;
-  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-attachment: fixed; 
-  background-position: center center; 
 }
 
 #hearts-gif {

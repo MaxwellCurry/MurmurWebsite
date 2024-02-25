@@ -26,8 +26,7 @@
 
 @font-face {
   font-family: 'Pastel Crayon';
-  src: url('/js/pastel.ttf') format('truetype'); /* Replace 'path/to/pastel-crayon.ttf' with the actual path to the font file */
-  /* You may also include additional src declarations for other font formats like woff, woff2, etc. */
+  src: url('/js/pastel.ttf') format('truetype'); 
 }
 
 body {
@@ -42,11 +41,6 @@ body {
     background-color: #ffffff;
     background-image: url("/images/paper.png");
     background-size: cover;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-position: center center; 
-	overflow: hidden;
     z-index: 1;
 }
 
@@ -61,7 +55,7 @@ img {
 
 h2 {
 	color: #6495ED;
-	margin-top: 17px;
+	margin-top: 30px;
     margin-bottom: 8px;
     font-family: 'Pastel Crayon', sans-serif; 
 }
@@ -70,7 +64,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 12.5%;
   z-index: 1;
 }
 
