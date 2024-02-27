@@ -191,16 +191,23 @@ function submitSignUp() {
       
       const emailMap = new Map(); 
       
-      emailMap.set(crush1, crush1Email); 
-      emailMap.set(crush2, crush2Email); 
-      emailMap.set(crush3, crush3Email); 
+      emailMap.set(crush1Email, crush1); 
+      emailMap.set(crush2Email, crush2); 
+      emailMap.set(crush3Email, crush3); 
       
       var userData = new User(currName, currSchool, emailMap); 
       //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
       
       // In signup.js
       window.globalFunctions.submitData(userData);
-//			window.location.href = "new.html";
+      
+      window.globalFunctions.getUser();
+      
+      
+//      setTimeout(function() {
+//        window.location.href = "new.html";
+//      }, 1000);
+      
     } else {
       alert('Please fill all crush and crush email fields.');
     }
