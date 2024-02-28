@@ -53,21 +53,48 @@ googleLogIn.addEventListener("click", function(event){
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           const user = result.user;
-          var dynamicVariableSpan = document.getElementById("dynamicVariable");
+//            if (result.additionalUserInfo.isNewUser) {
+//              console.log("exists");
+//              userExists = true;
+//            } else {
+//              console.log("DNE");
+//              userExists = false;
+//            }
           findSchool(user.uid);
+          var dynamicVariableSpan = document.getElementById("dynamicVariable");
         
         
           if(login){
-            userEmailDisplay = document.createElement('p');
-            toggle = true;
-            originalButtonContent.html = googleLogIn.innerHTML;
-            googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
-            toggleSignUpButton(); // Call toggleSignUpButton after sign-in
-            findSchool(user.uid);
-            dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
+            
+            
+            setTimeout(function() {
+            
+            if(!userExists){
+                userEmailDisplay = document.createElement('p');
+                toggle = true;
+                originalButtonContent.html = googleLogIn.innerHTML;
+                googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
+                toggleSignUpButton(); // Call toggleSignUpButton after sign-in
+                findSchool(user.uid);
+                dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
+              }
+              else{
+                alert("YOUVE ALREADY REGISTERED DUMBO");
+              }
+            
+            }, 1000);
+            
           }
           else{
-            window.globalFunctions.nextPageLog(user.uid);
+            setTimeout(function() {
+              if(userExists){
+
+                window.globalFunctions.nextPageLog(user.uid);
+              }
+              else{
+                alert("You need to register!");
+              }
+            }, 1000);
           }
         
         })
@@ -96,21 +123,21 @@ googleLogIn.addEventListener("click", function(event){
 let userUID = ""
 auth.onAuthStateChanged(function(user) {
   if (user) {
-    if(!userExists){
-      userUID = user.uid
-      // User is signed in.
-      console.log('User is signed in:', user);
-      currentUser = user;
-      // Enable the signup button
-      signUpButton.disabled = false;
-      signUpButton.classList.remove('disabled');
-      userEmail=user.email;
-      superDuper=user.uid;
-    }
-    else{
-//      dynamicVariableSpan.textContent = "";
-      console.log('Do not duplicate', user);
-    }
+    setTimeout(function() {
+      if(!userExists){
+        userUID = user.uid
+        // User is signed in.
+        console.log('User is signed in:', user);
+        currentUser = user;
+        // Enable the signup button
+        signUpButton.disabled = false;
+        signUpButton.classList.remove('disabled');
+        userEmail=user.email;
+        superDuper=user.uid;
+      }
+      else{
+      }
+    }, 2000);
   } else {
     var dynamicVariableSpan = document.getElementById("dynamicVariable");
     console.log('No user is signed in.');
@@ -153,7 +180,7 @@ window.globalFunctions = {
       }, 1000);
   }
   ,nextPageLog: async function(uid){
-      var url = "/html/new.html?userEmail=" + encodeURIComponent(uid); // Make sure to encode the parameter value
+      var url = "/html/new.html?userEmail=" + encodeURIComponent(uid);
 
       setTimeout(function() {
         window.location.href = url;
