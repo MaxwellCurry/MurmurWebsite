@@ -7,6 +7,7 @@ var signupImage = document.createElement('img');
 
 
 var userEmail = "";
+//var userData;
 
 class User {
   constructor(name, school, crushList) {
@@ -200,13 +201,9 @@ function submitSignUp() {
       
       // In signup.js
       window.globalFunctions.submitData(userData);
-      
-      window.globalFunctions.getUser();
-      
-      
-//      setTimeout(function() {
-//        window.location.href = "new.html";
-//      }, 1000);
+      window.globalFunctions.nextPage();
+
+
       
     } else {
       alert('Please fill all crush and crush email fields.');

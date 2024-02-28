@@ -9,9 +9,25 @@ const auth = getAuth(app);
 const db = getFirestore(app); 
 const db1 = getFirestore(app); 
 auth.languageCode = 'en'; 
+var uid = "";
 
 
-var uid = "ETHnsnES8vYUgZmsoR87CBsfU8J3"
+// Get the query parameters from the URL
+const queryString = window.location.search;
+
+// Create a URLSearchParams object
+const urlParams = new URLSearchParams(queryString);
+
+// Get the value of the 'userEmail' parameter
+const userEmail = urlParams.get('userEmail');
+
+console.log(userEmail); // This will log the userEmail value to the console
+
+uid = userEmail;
+
+
+
+
 
 let userSchool = "";
 async function findSchool() {
@@ -53,6 +69,7 @@ async function setValues() {
   const schoolInputValue = schoolInput.value.trim();
   const userData = await getDoc(doc(db1, userSchool, uid));
   
+  
   const nestedUserData = {
     fullname: nameInputValue,
     crushList: userData.get("crushList"),
@@ -66,14 +83,13 @@ async function setValues() {
   const crushList = userData.get("crushList");
   const profileData = {
     fullname: nameInputValue,
+    crushList: userData.get("crushList"),
     email: userData.get("email")
   };
-
-  if (crushList !== undefined) {
-    profileData.crushList = crushList;
-  }
   
   const deleteResult = await deleteDoc(doc(db1, userSchool, uid));
+  
+  userSchool=schoolInputValue;
 
   const newDocRef = doc(db1, schoolInputValue, uid); 
   const setResult = await setDoc(newDocRef, profileData);

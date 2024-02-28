@@ -14,6 +14,8 @@ const db = getFirestore(app); //database
 const db1 = getFirestore(app); 
 auth.language = 'en'; 
 let currentUser = null;
+var userExists = false;
+
 
 const googleLogIn = document.getElementById("google-login-button");
 let toggle = false; // Initialize toggle variable
@@ -24,7 +26,22 @@ const originalButtonContent = {
 };
 
 var userEmail = "";
+var superDuper = "";
 
+async function findSchool(uid) {
+  const schoolDoc = await getDoc(doc(db1, "Schools", "School List"));
+  const schoolArray = schoolDoc.get("Schools");
+  
+  for (let i = 0; i < schoolArray.length; i++) {
+    const schoolDoc = await getDoc(doc(db1, schoolArray[i], uid));
+    if (schoolDoc.exists()) {
+      console.log("stooopid");
+      userExists = true;
+      console.log(userExists);
+      break;
+    }
+  }
+}
 
 
 
@@ -37,18 +54,20 @@ googleLogIn.addEventListener("click", function(event){
           const token = credential.accessToken;
           const user = result.user;
           var dynamicVariableSpan = document.getElementById("dynamicVariable");
+          findSchool(user.uid);
         
         
           if(login){
             userEmailDisplay = document.createElement('p');
-            dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
             toggle = true;
             originalButtonContent.html = googleLogIn.innerHTML;
             googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
             toggleSignUpButton(); // Call toggleSignUpButton after sign-in
+            findSchool(user.uid);
+            dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
           }
           else{
-            window.location.href = "/html/new.html";
+            window.globalFunctions.nextPageLog(user.uid);
           }
         
         })
@@ -77,14 +96,21 @@ googleLogIn.addEventListener("click", function(event){
 let userUID = ""
 auth.onAuthStateChanged(function(user) {
   if (user) {
-		userUID = user.uid
-    // User is signed in.
-    console.log('User is signed in:', user);
-    currentUser = user;
-    // Enable the signup button
-    signUpButton.disabled = false;
-    signUpButton.classList.remove('disabled');
-    userEmail=user.email;
+    if(!userExists){
+      userUID = user.uid
+      // User is signed in.
+      console.log('User is signed in:', user);
+      currentUser = user;
+      // Enable the signup button
+      signUpButton.disabled = false;
+      signUpButton.classList.remove('disabled');
+      userEmail=user.email;
+      superDuper=user.uid;
+    }
+    else{
+//      dynamicVariableSpan.textContent = "";
+      console.log('Do not duplicate', user);
+    }
   } else {
     var dynamicVariableSpan = document.getElementById("dynamicVariable");
     console.log('No user is signed in.');
@@ -117,19 +143,23 @@ window.globalFunctions = {
       }
 
       const result = await setDoc(docRef, nestedUserData); 
+
   }
-  
-  
-  ,getUser: async function() {
-    try {
-      const test = doc(db1, "Overwrite", "eNmGQtRx7JONl7njLGNoqaj1rvO2");
-      const test1 = await getDoc(test);
-      const hippo = test1.get("crushList");
-      console.log(hippo);
-    } catch (error) {
-      console.error("Error getting user data:", error);
-    }
+  ,nextPage: async function(){
+      var url = "/html/new.html?userEmail=" + encodeURIComponent("ETHnsnES8vYUgZmsoR87CBsfU8J3"); // Make sure to encode the parameter value
+
+      setTimeout(function() {
+        window.location.href = url;
+      }, 1000);
   }
+  ,nextPageLog: async function(uid){
+      var url = "/html/new.html?userEmail=" + encodeURIComponent(uid); // Make sure to encode the parameter value
+
+      setTimeout(function() {
+        window.location.href = url;
+      }, 1000);
+  }
+
 };
 
 
