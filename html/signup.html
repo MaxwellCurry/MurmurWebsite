@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/signup.css">
   <link rel="stylesheet" href="/js/pastel.ttf">
 </head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <body>
 <!--  <img id="birdImg" src="/images/bird.png" alt="Bird Image"> -->
   <div class="center">
@@ -13,12 +14,17 @@
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div id="tab1" class="tab-content">
-            <h2>User Info</h2>
-            <div><input type="text" id="school" placeholder="Enter Your School"></div>
-            <div><input type="text" id="email" placeholder="Enter your First and Last Name"></div>
-<!--            <h3>Link Your School Email:</h3>-->
+            <h2>Fill All Fields</h2>
+            <div class="search-bar-container">
+              <input type="text" class="search-bar" id="schoolSearch" placeholder="Enter Your School" autocomplete="off">
+              <div class="schools-dropdown"></div>
+            </div>
+            <div><input type="text" id="email" placeholder="Enter your Full Name" autocomplete="off"></div>
             <p class="signed-in-message"><span id="dynamicVariable"></span></p>
-            <button id="google-login-button" class="logbutton"></button>
+
+            <button id="google-login-button" class="logbutton">
+            </button>
+            <h3>Academic Email Only!</h3>
           </div>
         </div>
         <div class="flip-card-back">
@@ -26,16 +32,16 @@
             <h2 class="crush-title">Interests List</h2>
             <div class="crush-container">
                 <div>
-                    <input type="text" class="crush-input" id="crush1" placeholder="1st Full Name">
-                    <input type="text" class="crushemail-input" id="crush1email" placeholder="1st School Email">
+                    <input type="text" class="crush-input" id="crush1" placeholder="1st Full Name" autocomplete="off">
+                    <input type="text" class="crushemail-input" id="crush1email" placeholder="1st School Email" autocomplete="off">
                 </div>
                 <div>
-                    <input type="text" class="crush-input" id="crush2" placeholder="2nd Full Name">
-                    <input type="text" class="crushemail-input" id="crush2email" placeholder="2nd School Email">
+                    <input type="text" class="crush-input" id="crush2" placeholder="2nd Full Name" autocomplete="off">
+                    <input type="text" class="crushemail-input" id="crush2email" placeholder="2nd School Email" autocomplete="off">
                 </div>
                 <div>
-                    <input type="text" class="crush-input" id="crush3" placeholder="3rd Full Name">
-                    <input type="text" class="crushemail-input" id="crush3email" placeholder="3rd School Email">
+                    <input type="text" class="crush-input" id="crush3" placeholder="3rd Full Name" autocomplete="off">
+                    <input type="text" class="crushemail-input" id="crush3email" placeholder="3rd School Email" autocomplete="off">
                 </div>
             </div>
           </div>
@@ -43,7 +49,6 @@
       </div>
     </div>
   </div>
-  <button class="signup-button" onclick="submitSignUp()"></button>
   
   <div class="tab-container">
     <button id="tabButton1" class="tab-button" onclick="nextTab1()">
@@ -54,8 +59,8 @@
     </button>
   </div>
   
-  <div id="speechBubble">
-  </div>
+  <button class="signup-button" onclick="submitSignUp()"></button>
+  <button class="next-button" onclick="nextButton()"></button>
 
   <script src="/js/main.js" defer type="module"></script>
   <script src="/js/signup.js"></script>

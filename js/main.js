@@ -120,18 +120,15 @@ googleLogIn.addEventListener("click", function(event){
 });
 
 
-let userUID = ""
 auth.onAuthStateChanged(function(user) {
   if (user) {
     setTimeout(function() {
       if(!userExists){
-        userUID = user.uid
+        userUID = user.uid;
         // User is signed in.
         console.log('User is signed in:', user);
         currentUser = user;
         // Enable the signup button
-        signUpButton.disabled = false;
-        signUpButton.classList.remove('disabled');
         userEmail=user.email;
         superDuper=user.uid;
       }
@@ -171,13 +168,6 @@ window.globalFunctions = {
 
       const result = await setDoc(docRef, nestedUserData); 
 
-  }
-  ,nextPage: async function(){
-      var url = "/html/new.html?userEmail=" + encodeURIComponent("ETHnsnES8vYUgZmsoR87CBsfU8J3"); // Make sure to encode the parameter value
-
-      setTimeout(function() {
-        window.location.href = url;
-      }, 1000);
   }
   ,nextPageLog: async function(uid){
       var url = "/html/new.html?userEmail=" + encodeURIComponent(uid);

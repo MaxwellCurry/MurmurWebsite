@@ -7,7 +7,7 @@ var signupImage = document.createElement('img');
 
 
 var userEmail = "";
-//var userData;
+var userUID = "";
 
 class User {
   constructor(name, school, crushList) {
@@ -15,11 +15,11 @@ class User {
     this.school = school; 
     this.crushList = crushList; 
     this.userEmail = userEmail;
+    this.userUID = userUID;
   }
 }
 
 
-signupButton.appendChild(signupImage);
 
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +28,7 @@ function getQueryParam(name) {
 
 var schoolFromURL = getQueryParam('school');
 if (schoolFromURL) {
-  schoolInput.value = schoolFromURL;
+  schoolSearch.value = schoolFromURL;
 }
 
 function nextTab() {
@@ -107,19 +107,19 @@ signUpButton.disabled = true;
 signUpButton.classList.add('disabled');
 
 
-schoolInput.addEventListener('input', toggleSignUpButton);
 emailInput.addEventListener('input', toggleSignUpButton);
 // Add event listeners to crush inputs
 
 
 
 signupImage.src = "/images/signupgrey.png"; // Set the image source
-signupImage.alt = "Sign Up"; // Set the alt text for accessibility
+
+signupButton.style.backgroundImage = "url('/images/signupgrey.png')";
 
 function toggleSignUpButton() {
   const userSignedIn = userEmailDisplay;
   if (userSignedIn) {
-    if (schoolInput.value.trim() !== '' && emailInput.value.trim() !== '') {
+    if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '') {
       var allCrushesFilled = true;
       var allCrushesEmailsFilled = true;
 
@@ -153,14 +153,14 @@ function toggleSignUpButton() {
   }
 
   // Update the image source based on signup button status
-  signupImage.src = signUpButton.disabled ? "/images/signupgrey.png" : "/images/signup.png";
+  signupButton.style.backgroundImage = `url(${signUpButton.disabled ? "/images/signupgrey.png" : "/images/signup.png"})`;
 }
 
 
 
 function submitSignUp() {
   // Check if all fields are filled
-  if (schoolInput.value.trim() !== '' && emailInput.value.trim() !== '') {
+  if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '') {
     var allCrushesFilled = true;
     crushInputs.forEach(function(crushInput) {
       if (crushInput.value.trim() === '') {
@@ -179,7 +179,7 @@ function submitSignUp() {
 
     if (allCrushesFilled && allCrushEmailsFilled) {
       currName = document.getElementById('email').value.trim(); 
-      currSchool = document.getElementById('school').value.trim(); 
+      currSchool = document.getElementById('schoolSearch').value.trim(); 
 
       crush1 = document.getElementById('crush1').value.trim(); 
       crush2 = document.getElementById('crush2').value.trim(); 
@@ -201,7 +201,7 @@ function submitSignUp() {
       
       // In signup.js
       window.globalFunctions.submitData(userData);
-      window.globalFunctions.nextPage();
+      window.globalFunctions.nextPageLog(userData.userUID);
 
 
       
@@ -224,7 +224,7 @@ function checkDynamicVariable() {
   if (!dynamicVariable || dynamicVariable.textContent.trim() === '') {
     signUpButton.disabled = true;
     signUpButton.classList.add('disabled');
-    signupImage.src = "/images/signupgrey.png";
+    signupButton.style.backgroundImage = "url('/images/signupgrey.png')";
   }
 }
 // Call checkDynamicVariable initially
@@ -233,7 +233,94 @@ checkDynamicVariable();
 setInterval(checkDynamicVariable, 100); // Adjust the interval duration as needed
 
 
+document.addEventListener("DOMContentLoaded", function(){
+  var searchInput = document.querySelector(".search-bar");
+  var dropdown = document.querySelector(".schools-dropdown");
 
+
+  for (let i = 0; i < 6000; i++) {
+		var option = document.createElement("div");
+		option.classList.add("school-option");
+		dropdown.appendChild(option);
+  }
+  var schoolOptions = document.querySelectorAll(".school-option");
+
+  fetch('../schools.txt')
+	.then(response => response.text())
+	.then(data => {
+		var schools = data.split('\n').map(function(item) {
+			return item.trim();
+	  });
+	  schoolOptions.forEach(function(option, index) {
+			option.textContent = schools[index];
+	  });
+  }).catch(error => console.error('Error fetching schools:', error));
+
+  document.addEventListener("click", function (event) {
+		if (event.target.closest(".search-bar-container")) {
+			dropdown.style.display = "block";
+			schoolOptions.forEach(function (option, index) {
+				if (index < 3) {
+					option.style.display = "block";
+				} else {
+					option.style.display = "none";
+				}
+			});
+		} else {
+			dropdown.style.display = "none";
+		}
+		if (event.target.classList.contains("school-option")) {
+			searchInput.value = event.target.textContent;
+			dropdown.style.display = "none";
+		}
+  });
+
+  searchInput.addEventListener("input", function () {
+		var visibleOptionsCount = 0;
+		var searchTerm = searchInput.value.toLowerCase();
+
+		schoolOptions.forEach(function (option) {
+			var optionText = option.textContent.toLowerCase();
+			if (optionText.includes(searchTerm) && visibleOptionsCount < 3) {
+				option.style.display = "block";
+				visibleOptionsCount++;
+			} else {
+				option.style.display = "none";
+			}
+		});
+  });
+});
+
+var signupButton = document.querySelector('.signup-button');
+signupButton.style.display = 'none';
+
+function toggleTabButtonStyle(activeButtonIndex) {
+  var tabButtons = document.querySelectorAll('.tab-button');
+  var signUpButton = document.querySelector('.signup-button');
+  var nextButton = document.querySelector('.next-button');
+
+  tabButtons.forEach(function(button, index) {
+    if (index === activeButtonIndex) {
+      button.classList.add('active-tab-button');
+      button.querySelector('img').src = "/images/dark.png";
+    } else {
+      button.classList.remove('active-tab-button');
+      button.querySelector('img').src = "/images/light.png";
+    }
+  });
+
+  signUpButton.style.display = 'block';
+  nextButton.style.display = 'none';
+}
+
+function nextButton(){
+  var nextButton = document.querySelector('.next-button');
+  var signUpButton = document.querySelector('.signup-button');
+  
+  nextButton.style.display = 'none';
+  signUpButton.style.display = 'block';
+  nextTab2();
+}
 
 
 

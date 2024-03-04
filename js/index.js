@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		if (event.target.classList.contains("school-option")) {
 			searchInput.value = event.target.textContent;
 			dropdown.style.display = "none";
+            redirectToSignup();
 		}
   });
 
@@ -55,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function(){
 		});
   });
 });
+
+
 document.addEventListener("DOMContentLoaded", function () {
 	var infoButton = document.getElementById("info-button");
 	var popupContainer = document.createElement("div");
@@ -63,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var popupText = document.createElement("div");
 	popupText.classList.add("popup-text");
-	popupText.textContent = "Introducing the Murmur! Simply input your school and the names of people you secretly like, and if there's a mutual entry, you'll both get a notification signifying a match! Until you both decide to accept the match, identities will remain anonymous. Enjoy!";
+	popupText.textContent = "Introducing the Murmur! Simply input your school and the names of people you secretly like, and if there's a mutual entry, you'll both get a notification signifying a match! Until you both decide to accept the match, identities will remain anonymous. 'Find your School' then 'Sign Up' to get started!";
 
 	var closePopup = document.createElement("div");
 	closePopup.classList.add("close-popup");

@@ -7,38 +7,99 @@
   <link rel="stylesheet" href="/css/new.css">
 </head>
 <body>
+  <div id="schoolDisplay"></div>
+  <div><button id="signButton">Sign Out</button></div>
   
   <div class="tab-container">
-    <button class="tab" id="tab1">Tab 1</button>
-    <button class="tab" id="tab2">Tab 2</button>
-    <button class="tab" id="tab3">Tab 3</button>
+    <button class="tab" id="tab1">Tab 1<span id="notificationCount"></span></button>
+    <button class="tab" id="tab3">Tab 2</button>
   </div>
   
   <div class="content" id="content1">
     <h2>Matches</h2>
-    <img src="/images/mailbox.png" alt="Mailbox Image">
-  </div>
-  
-  <div class="content" id="content2">
-    <h2>Revision</h2>
+    
+    <div class="notification-container">
+      <div class="notification-box" id="notificationBox"></div>
+    </div>
+    
   </div>
 
   <span id="profileNameSpan"></span>
   
-  <div class="content" id="content3">
+  <div class="content" id="content2">
     <h2>Profile</h2>
     <div class="profile-info">
       <div class="input-group">
-        <label for="name">Name</label>
+<!--        <label for="name">Name</label>-->
         <input type="text" id="nameInput" placeholder="Enter your name" disabled>
       </div>
       <div class="input-group">
-        <label for="school">School</label>
+<!--        <label for="school">School</label>-->
         <input type="text" id="schoolInput" placeholder="Enter your school" disabled>
       </div>
-      <button id="editButton">Edit</button>
+      <div class="crush-container">
+        <div>
+            <input type="text" class="crush-input" id="crush1" placeholder="1st Full Name" disabled>
+            <input type="text" class="crushemail-input" id="crush1email" placeholder="1st School Email" disabled>
+        </div>
+        <div>
+            <input type="text" class="crush-input" id="crush2" placeholder="2nd Full Name" disabled>
+            <input type="text" class="crushemail-input" id="crush2email" placeholder="2nd School Email" disabled>
+        </div>
+        <div>
+            <input type="text" class="crush-input" id="crush3" placeholder="3rd Full Name" disabled>
+            <input type="text" class="crushemail-input" id="crush3email" placeholder="3rd School Email" disabled>
+        </div>
+      </div>
+      <div><button id="editButton">Edit</button></div>
+      
+      <div><button id="deleteButton">Delete Account</button></div>
+
     </div>
+    
+    
+    
+<!--
+    
+    <div class="flip-card slide-in-left">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div id="tab1" class="tab-content">
+            <h2>Fill All Fields</h2>
+            <div class="search-bar-container">
+              <input type="text" class="search-bar" id="schoolSearch" placeholder="Enter Your School" autocomplete="off">
+              <div class="schools-dropdown"></div>
+            </div>
+            <div><input type="text" id="email" placeholder="Enter your Full Name" autocomplete="off"></div>
+
+
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div id="tab2" class="tab-content">
+            <h2 class="crush-title">Interests List</h2>
+            <div class="crush-container">
+                <div>
+                    <input type="text" class="crush-input" id="crush1" placeholder="1st Full Name" autocomplete="off">
+                    <input type="text" class="crushemail-input" id="crush1email" placeholder="1st School Email" autocomplete="off">
+                </div>
+                <div>
+                    <input type="text" class="crush-input" id="crush2" placeholder="2nd Full Name" autocomplete="off">
+                    <input type="text" class="crushemail-input" id="crush2email" placeholder="2nd School Email" autocomplete="off">
+                </div>
+                <div>
+                    <input type="text" class="crush-input" id="crush3" placeholder="3rd Full Name" autocomplete="off">
+                    <input type="text" class="crushemail-input" id="crush3email" placeholder="3rd School Email" autocomplete="off">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+-->
+    
   </div>
+
 
 
   <script src="/js/new.js" defer type="module"></script>

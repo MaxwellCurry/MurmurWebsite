@@ -110,7 +110,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     width: calc(0.48 * 272px); /* Width of the image */
-    height: calc(0.48 * 92px); /* Height of the image */
+    height: calc(0.48 * 92px);
     position: absolute;
     top: 62.8%;
     left: 50%;
@@ -135,7 +135,7 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     width: calc(0.6 * 214px); /* Width of the image */
-    height: calc(0.6 * 88px); /* Height of the image */
+    height: calc(0.5 * 88px); /* Height of the image */
     position: absolute;
     top: 72%;
     left: 50%;
@@ -148,6 +148,16 @@ body {
 .logbutton:hover {
   transform: translate(-47%, -5%);
   /* Move the button upward slightly on hover */
+}
+
+h2 {
+  font-family: 'Pastel Crayon', sans-serif;
+  font-size: 20px;
+  position: absolute;
+  top: 76.5%;
+  left: 50%;
+  transform: translate(-47.75%, 0%);
+  color: #939393;
 }
 
 .popup-container {
@@ -165,15 +175,33 @@ body {
 }
 
 .popup-container p {
-  font-size: 30px;
   max-width: 300px;
   margin-bottom: 15px;
 }
 
 .popup-text {
-  font-size: 35px;
+  font-size: 30px;
   color: #555555;
 }
+
+/* Media Query for adjusting sizes for smaller screens */
+@media screen and (max-width: 768px) {
+  .popup-container {
+    padding: 3%;
+    border-radius: 3%;
+  }
+
+  .popup-container p {
+    font-size: 4vw;
+    max-width: 80vw;
+    margin-bottom: 3vw;
+  }
+
+  .popup-text {
+    font-size: 4vw;
+  }
+}
+
 
 .close-popup {
   position: absolute;

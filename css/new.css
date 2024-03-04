@@ -5,6 +5,36 @@
 }
 
 body{
+  position: relative;
+  height: 100vh;
+  background-color: #ffffff;
+  background-image: url("/images/paper.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.crush-input {
+    width: 115px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    margin-left: 35px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    background-color: transparent;
+}
+
+.crushemail-input {
+    width: 150px; /* Adjust width to accommodate margin */
+    padding: 10px;
+    margin-top: 1px;
+    margin-left: 0px; /* Adjust margin to position to the right */
+    margin-bottom: 1px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: transparent;
 }
 
 .tab-container {
@@ -25,6 +55,17 @@ body{
   font-size: 16px;
 }
 
+#notificationCount {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    margin-left: 2px; /* Adjust as needed */
+    position: relative; /* Add relative positioning */
+    top: -8px; /* Adjust the vertical position */
+}
+
 .content {
   display: none;
   justify-content: center;
@@ -41,7 +82,6 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 25px;
-    font-family: 'Pastel Crayon', sans-serif; 
 }
 
 #content1 img {
@@ -50,17 +90,11 @@ body{
 }
 
 
-#content2 {
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-}
-
 .input-group {
   margin-bottom: 15px; /* Adjust margin-bottom as needed */
   display: flex;
   align-items: center;
+  margin-left: 25px;
 }
 
 .input-group label {
@@ -76,13 +110,89 @@ body{
   border-radius: 5px;
 }
 
-#content3 {
+#content2 {
   text-align: center;
+  font-size: 20px;
 }
 
-#content3 .profile-info {
+#content2 .profile-info {
   max-width: 400px;
   margin: 0 auto;
 }
+
+#editButton {
+    margin-top: 20px; /* Adjust the margin-top value as needed */
+}
+
+#deleteButton {
+    margin-top: 20px; /* Adjust the margin-top value as needed */
+}
+
+#signButton{
+    margin-top: 12px;
+}
+
+.notification-container {
+    width: 500px; /* Set maximum width for the notification box */
+    height: 300px;
+    background-color: #f0f0f0; /* Grey background color */
+    padding: 10px; /* Add some padding around the notifications */
+    border-radius: 5px; /* Add rounded corners */
+    margin: 0 auto; /* Center the notification box horizontally */
+    position: relative; /* Add relative positioning for absolute popup */
+    font-size: 25px;
+}
+
+.notification {
+    margin-bottom: 5px; /* Add margin between notifications */
+    padding: 10px; /* Add padding for each notification */
+    background-color: #fff; /* White background for notifications */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer; /* Change cursor to pointer when hovering over notification */
+    word-wrap: break-word; /* Allow long words to break */
+    max-width: 100%; /* Set maximum width for each notification */
+}
+
+.notification:hover {
+    background-color: #f6f6f6; /* Change background color on hover */
+}
+
+.popup {
+    max-width: 300px; /* Set maximum width for the popup */
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    font-size: 25px;
+    text-align: center;
+}
+
+.popup button {
+    display: block; /* Display the button as a block-level element */
+    margin-top: 20px; /* Add margin to separate the button from the text */
+    position: absolute;
+    top: 50%;
+    left: 43.5%;
+}
+
+.pastel-crayon-font {
+  font-family: 'Pastel Crayon', sans-serif;
+}
+
+h2{
+  color: #6495ED;
+  margin-bottom: 6px;
+  font-family: 'Pastel Crayon', sans-serif; 
+  font-size: 28px;
+}
+
 
 
