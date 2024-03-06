@@ -6,27 +6,33 @@ import { firebaseConfig } from './config.js';
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
-const db = getFirestore(app); 
 const db1 = getFirestore(app); 
 auth.languageCode = 'en'; 
 var uid = "";
 
 
-// Get the query parameters from the URL
-const queryString = window.location.search;
+const userUID = localStorage.getItem('userUID');
 
-// Create a URLSearchParams object
-const urlParams = new URLSearchParams(queryString);
+document.addEventListener('DOMContentLoaded', function() {
 
-// Get the value of the 'userEmail' parameter
-const userEmail = urlParams.get('userEmail');
+  if (userUID) {
 
-//console.log(userEmail); 
-if(userEmail === null){
-  window.location.href = "../index.html"; 
+    fetchUserData(userUID);
+  } else {
+
+  }
+});
+
+// Function to fetch user data using the user's UID
+function fetchUserData(userUID) {
+  uid=userUID;
 }
 
-uid = userEmail;
+if(userUID === "null"){
+  window.location.href = "../index.html";
+}
+
+
 
 
 let userSchool = "";
@@ -59,7 +65,7 @@ async function getUser() {
   profileData.name = userData.get("fullname");
   profileData.school = userData.get("email");
   profileData.crushMap = userData.get("crushList");
-//  console.log(profileData.school);
+//  console.log(profileData.shool);
   document.getElementById("nameInput").value = profileData.name;
   
   const schoolElement = document.getElementById("schoolDisplay");
@@ -186,6 +192,7 @@ document.getElementById("deleteButton").addEventListener("click", async function
 });
 
 document.getElementById("signButton").addEventListener("click", function() {
+  localStorage.setItem('userUID', null);
   window.location.href = "../index.html";
 });
 
@@ -249,7 +256,9 @@ if (notificationCount === 0) {
     notificationCountElement.textContent = notificationCount;
 }
 
-
+window.addEventListener('beforeunload', function(event) {
+  localStorage.setItem('userUID', null);
+});
 
 
 

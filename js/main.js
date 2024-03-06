@@ -77,6 +77,8 @@ googleLogIn.addEventListener("click", function(event){
                 toggleSignUpButton(); // Call toggleSignUpButton after sign-in
                 findSchool(user.uid);
                 dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
+                var academic = document.getElementById("");
+                
               }
               else{
                 alert("YOUVE ALREADY REGISTERED DUMBO");
@@ -88,8 +90,9 @@ googleLogIn.addEventListener("click", function(event){
           else{
             setTimeout(function() {
               if(userExists){
-
-                window.globalFunctions.nextPageLog(user.uid);
+                const uid = user.uid;
+                localStorage.setItem('userUID', uid);
+                window.location.href = "/html/new.html";
               }
               else{
                 alert("You need to register!");
@@ -128,9 +131,11 @@ auth.onAuthStateChanged(function(user) {
         // User is signed in.
         console.log('User is signed in:', user);
         currentUser = user;
-        // Enable the signup button
         userEmail=user.email;
         superDuper=user.uid;
+        
+        const uid = user.uid;
+        localStorage.setItem('userUID', uid);
       }
       else{
       }
@@ -170,11 +175,11 @@ window.globalFunctions = {
 
   }
   ,nextPageLog: async function(uid){
-      var url = "/html/new.html?userEmail=" + encodeURIComponent(uid);
-
-      setTimeout(function() {
-        window.location.href = url;
-      }, 1000);
+//      var url = "/html/new.html?userEmail=" + encodeURIComponent(uid);
+//
+//      setTimeout(function() {
+//        window.location.href = url;
+//      }, 1000);
   }
 
 };

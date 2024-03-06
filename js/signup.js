@@ -202,6 +202,9 @@ function submitSignUp() {
       // In signup.js
       window.globalFunctions.submitData(userData);
       window.globalFunctions.nextPageLog(userData.userUID);
+      setTimeout(function() {
+        window.location.href = "/html/new.html";
+      }, 1000);
 
 
       

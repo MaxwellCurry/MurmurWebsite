@@ -18,23 +18,59 @@ body{
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 1px;
-    margin-left: 35px;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 6px;
     outline: none;
     background-color: transparent;
+    background-image: url('/images/box.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  font-family: 'Pastel Crayon', sans-serif;
+}
+
+.schoolInput {
+    width: 115px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    border: 0px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    background-color: transparent;
+    background-image: url('/images/box.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  font-family: 'Pastel Crayon', sans-serif;
+}
+
+.name-input {
+  width: 115px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+  border: 0px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  background-image: url('/images/box.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-family: 'Pastel Crayon', sans-serif;
+  background-color: transparent;
 }
 
 .crushemail-input {
-    width: 150px; /* Adjust width to accommodate margin */
+    width: 115px; /* Adjust width to accommodate margin */
     padding: 10px;
     margin-top: 1px;
-    margin-left: 0px; /* Adjust margin to position to the right */
     margin-bottom: 1px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     outline: none;
     background-color: transparent;
+    background-image: url('/images/box.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  font-family: 'Pastel Crayon', sans-serif;
 }
 
 .tab-container {
