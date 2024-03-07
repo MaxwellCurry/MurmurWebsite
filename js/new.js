@@ -14,12 +14,9 @@ var uid = "";
 const userUID = localStorage.getItem('userUID');
 
 document.addEventListener('DOMContentLoaded', function() {
-
   if (userUID) {
-
     fetchUserData(userUID);
   } else {
-
   }
 });
 
@@ -32,27 +29,7 @@ if(userUID === "null"){
   window.location.href = "../index.html";
 }
 
-
-
-
-let userSchool = "";
-let email = "";
-async function findSchool() {
-  const schoolDoc = await getDoc(doc(db1, "Schools", "School List"));
-  const schoolArray = schoolDoc.get("Schools");
-  
-  for (let i = 0; i < schoolArray.length; i++) {
-    const schoolDoc = await getDoc(doc(db1, schoolArray[i], uid));
-    if (schoolDoc.exists()) {
-      userSchool = schoolArray[i];
-      break;
-    }
-  }
-//  console.log(userSchool);
-  document.getElementById("schoolInput").value = userSchool;
-  getUser();
-}
-findSchool();
+getUser();
 
 var profileData = {
   name: "",
@@ -61,15 +38,17 @@ var profileData = {
   crushMap: new Map()
 };
 async function getUser() {
-  const userData = await getDoc(doc(db1, userSchool, uid));
+  const userData = await getDoc(doc(db1, "Users", userUID));
   profileData.name = userData.get("fullname");
-  profileData.school = userData.get("email");
+  profileData.email = userData.get("email");
   profileData.crushMap = userData.get("crushList");
-//  console.log(profileData.shool);
+  profileData.school = userData.get("school");
+  console.log(profileData.shool);
   document.getElementById("nameInput").value = profileData.name;
+  document.getElementById("schoolInput").value = profileData.school;  
   
   const schoolElement = document.getElementById("schoolDisplay");
-  schoolElement.innerHTML = "Signed in as: " + profileData.school;
+  schoolElement.innerHTML = "Signed in as: " + profileData.email;
   schoolElement.classList.add("pastel-crayon-font");
 
   
@@ -112,20 +91,15 @@ async function setValues() {
     [crush3email]: crush3
   };
 
-  const userData = await getDoc(doc(db1, userSchool, uid));
+  const userData = await getDoc(doc(db1, "Users", userUID));
   const profileData = {
     fullname: nameInputValue,
     crushList: crushList,
     email: userData.get("email"),
+    school: schoolInputValue
   };
 
-  const docRef = doc(db1, schoolInputValue, uid);
-  const result = await setDoc(docRef, profileData);
-
-  const deleteResult = await deleteDoc(doc(db1, userSchool, uid));
-  userSchool = schoolInputValue;
-
-  const newDocRef = doc(db1, schoolInputValue, uid); 
+  const newDocRef = doc(db1, "Users", userUID); 
   const setResult = await setDoc(newDocRef, profileData);
 }
 
@@ -182,7 +156,7 @@ editButton.addEventListener("click", function() {
 document.getElementById("deleteButton").addEventListener("click", async function() {
   if (confirm("Are you sure you want to delete your account?")) {
     try {
-      await deleteDoc(doc(db1, userSchool, uid));
+      await deleteDoc(doc(db1, "Users", userUID));
       console.log("Document successfully deleted!");
         window.location.href = "../index.html";
     } catch (error) {

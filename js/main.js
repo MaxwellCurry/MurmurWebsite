@@ -29,17 +29,11 @@ var userEmail = "";
 var superDuper = "";
 
 async function findSchool(uid) {
-  const schoolDoc = await getDoc(doc(db1, "Schools", "School List"));
-  const schoolArray = schoolDoc.get("Schools");
-  
-  for (let i = 0; i < schoolArray.length; i++) {
-    const schoolDoc = await getDoc(doc(db1, schoolArray[i], uid));
-    if (schoolDoc.exists()) {
-      console.log("stooopid");
-      userExists = true;
-      console.log(userExists);
-      break;
-    }
+  const schoolDoc = await getDoc(doc(db1, "Users", uid));
+  if (schoolDoc.exists()) {
+    console.log("stooopid");
+    userExists = true;
+    console.log(userExists);
   }
 }
 
@@ -154,23 +148,13 @@ auth.onAuthStateChanged(function(user) {
 window.globalFunctions = {
   submitData: async function(userData) {
       const nestedUserData = {
-          fullname: userData.name,
-          crushList: Object.fromEntries(userData.crushList), 
-          email: userEmail
+        fullname: userData.name,
+        crushList: Object.fromEntries(userData.crushList), 
+        email: userEmail,
+        school: userData.school
       }
 
-      const docRef = doc(db, userData.school, userUID)
-      const schoolList = doc(db, "Schools", "School List"); 
-      const schoolListSnap = await getDoc(schoolList); 
-
-      const schoolListArray = schoolListSnap.get("Schools"); 
-      console.log(Array.isArray(schoolListArray)); 
-      if (schoolListArray.includes(userData.school) == false) { 
-        await updateDoc(schoolList, {
-            Schools: arrayUnion(userData.school)
-        });
-      }
-
+      const docRef = doc(db, "Users", userUID)
       const result = await setDoc(docRef, nestedUserData); 
 
   }
