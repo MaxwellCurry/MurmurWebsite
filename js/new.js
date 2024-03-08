@@ -293,12 +293,26 @@ function showPopup(message) {
     currentPopup = popup;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    addNotification('You have a new match!', 'You have matched with: Emaan Heidari, 100023288@mvla.net');
-    addNotification('You have a new match!', 'You have matched with: Garv Virginkar, 100025488@mvla.net');
-});
+getMatches();
+let notificationCount = 0; // Changed const to let to allow reassignment
 
-const notificationCount = 2; // Set your notification count here
+async function getMatches() {
+  const userData = await getDoc(doc(db1, "Users", userUID));
+  const matches = userData.get('matches');
+  
+  console.log(matches);
+  
+  for (let k = 0; k < matches.length; k++) { // Corrected the for loop syntax
+    const matchArray = matches[k];
+    if (matchArray != null) { // Corrected matchArray spelling
+      const matchData = await getDoc(doc(db1, "Users", matchArray));
+      addNotification("You have a new match!", "You have matched with: " + matchData.get("fullname"));
+      notificationCount++;
+    }
+  }
+}
+
+
 const notificationCountElement = document.getElementById('notificationCount');
 
 if (notificationCount === 0) {

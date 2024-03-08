@@ -56,7 +56,7 @@ googleLogIn.addEventListener("click", async function(event){
               googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
               toggleSignUpButton(); // Call toggleSignUpButton after sign-in
               dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
-              var academic = document.getElementById("");
+              document.querySelector('.academic').style.display = 'none';
               userEmail=user.email;
               localStorage.setItem('userUID', user.uid);
             }
@@ -79,7 +79,7 @@ googleLogIn.addEventListener("click", async function(event){
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          const email = error.customData.email;
+          const email = error.email;
           const credential = GoogleAuthProvider.credentialFromError(error);
         });
     } else {
@@ -139,4 +139,23 @@ window.globalFunctions = {
 if (window.location.href.includes("signup.html")) {
   login = true;
 }
+
+// Add an event listener to detect changes in the dynamicVariable span
+document.addEventListener('DOMContentLoaded', function() {
+    const dynamicVariableSpan = document.getElementById('dynamicVariable');
+    dynamicVariableSpan.addEventListener('DOMSubtreeModified', function() {
+        const dynamicText = dynamicVariableSpan.textContent;
+        const academicMessage = document.querySelector('.academic');
+        
+        // Check if the dynamic text contains 'Linked with'
+        if (dynamicText.includes('Linked with')) {
+            // Hide the academic message
+            academicMessage.style.display = 'none';
+        } else {
+            // Show the academic message
+            academicMessage.style.display = 'block';
+        }
+    });
+});
+
 
