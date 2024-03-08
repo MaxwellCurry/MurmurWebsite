@@ -43,13 +43,10 @@ async function getUser() {
   profileData.email = userData.get("email");
   profileData.crushMap = userData.get("crushList");
   profileData.school = userData.get("school");
-  console.log(profileData.shool);
+  console.log(profileData.school);
   document.getElementById("nameInput").value = profileData.name;
   document.getElementById("schoolInput").value = profileData.school;  
-  
-  const schoolElement = document.getElementById("schoolDisplay");
-  schoolElement.innerHTML = "Signed in as: " + profileData.email;
-  schoolElement.classList.add("pastel-crayon-font");
+  console.log(profileData.email);
 
   
   
@@ -70,6 +67,10 @@ async function getUser() {
   document.getElementById('crush1email').value = crushEmails[0];
   document.getElementById('crush2email').value = crushEmails[1];
   document.getElementById('crush3email').value = crushEmails[2];
+  
+  const schoolElement = document.getElementById("schoolDisplay");
+  schoolElement.innerHTML = "Signed in as: " + userData.get("email");
+  schoolElement.classList.add("pastel-crayon-font");
 }
 
 
