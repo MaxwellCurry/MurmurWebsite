@@ -104,12 +104,89 @@ async function setValues() {
 }
 
 
+let alertShown = false;
+function checkDuplicateCrushes() {
+  var crushInputs = document.querySelectorAll('.crush-input');
+  var crushEmailInputs = document.querySelectorAll('.crushemail-input');
 
+  var crushValues = Array.from(crushInputs).map(input => input.value.trim()).filter(value => value !== '');
+  var crushEmailValues = Array.from(crushEmailInputs).map(input => input.value.trim()).filter(value => value !== '');
+
+  if (!alertShown && hasDuplicates(crushValues)) {
+    alertShown = true;
+    
+    setTimeout(function() {
+      toggleEditButton();
+    }, 30);
+  }
+
+  if (!alertShown && hasDuplicates(crushEmailValues)) {
+    alertShown = true;
+    
+    setTimeout(function() {
+      toggleEditButton();
+    }, 30);
+  }
+}
+
+function hasDuplicates(array) {
+  return (new Set(array)).size !== array.length;
+}
+
+function resetAlertFlag() {
+  alertShown = false;
+}
+
+var crushInputs = document.querySelectorAll('.crush-input');
+var crushEmailInputs = document.querySelectorAll('.crushemail-input');
+crushInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
+crushEmailInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
+
+setInterval(checkDuplicateCrushes, 20);
+
+function toggleEditButton() {
+    var editButton = document.getElementById("editButton");
+    var crushInputs = document.querySelectorAll('.crush-input');
+    var crushEmailInputs = document.querySelectorAll('.crushemail-input');
+    var nameInputs = document.querySelectorAll('.name-input');
+    var schoolInputs = document.querySelectorAll('.schoolInput');
+    var emptyTextBox = false;
+
+    // Check for duplicates and empty textboxes
+    [crushInputs, crushEmailInputs, nameInputs, schoolInputs].forEach(inputs => {
+        inputs.forEach(input => {
+            if (input.value.trim() === '') {
+                emptyTextBox = true;
+            }
+        });
+    });
+
+    // Disable the edit button if any textbox is empty or if alertShown is true
+    editButton.disabled = emptyTextBox || alertShown;
+}
+
+// Add event listeners to all inputs for immediate feedback
+document.querySelectorAll('.crush-input, .crushemail-input, .name-input, .schoolInput').forEach(input => input.addEventListener('input', toggleEditButton));
 
 document.getElementById("editButton").addEventListener("click", function() {
-  setValues();
-});
+    var crushInputs = document.querySelectorAll('.crush-input');
+    var crushEmailInputs = document.querySelectorAll('.crushemail-input');
+    var nameInputs = document.querySelectorAll('.name-input');
+    var schoolInputs = document.querySelectorAll('.schoolInput');
+    var allInputsFilled = true;
 
+    [crushInputs, crushEmailInputs, nameInputs, schoolInputs].forEach(inputs => {
+        inputs.forEach(input => {
+            if (input.value.trim() === '') {
+                allInputsFilled = false;
+            }
+        });
+    });
+
+    if (!alertShown && allInputsFilled) {
+        setValues();
+    }
+});
 
 
 

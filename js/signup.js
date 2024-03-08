@@ -116,10 +116,50 @@ signupImage.src = "/images/signupgrey.png"; // Set the image source
 
 signupButton.style.backgroundImage = "url('/images/signupgrey.png')";
 
+
+let alertShown = false;
+function checkDuplicateCrushes() {
+  var crushInputs = document.querySelectorAll('.crush-input');
+  var crushEmailInputs = document.querySelectorAll('.crushemail-input');
+
+  var crushValues = Array.from(crushInputs).map(input => input.value.trim()).filter(value => value !== '');
+  var crushEmailValues = Array.from(crushEmailInputs).map(input => input.value.trim()).filter(value => value !== '');
+
+  if (!alertShown && hasDuplicates(crushValues)) {
+    alertShown = true;
+    toggleSignUpButton()
+    setTimeout(function() {
+      alert('Please do not put duplicate names!');
+    }, 30);
+  }
+
+  if (!alertShown && hasDuplicates(crushEmailValues)) {
+    alertShown = true;
+    toggleSignUpButton()
+    setTimeout(function() {
+      alert('Please do not put duplicate names!');
+    }, 30);
+  }
+}
+
+function hasDuplicates(array) {
+  return (new Set(array)).size !== array.length;
+}
+
+function resetAlertFlag() {
+  alertShown = false;
+}
+
+var crushInputs = document.querySelectorAll('.crush-input');
+var crushEmailInputs = document.querySelectorAll('.crushemail-input');
+
+crushInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
+crushEmailInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
+
 function toggleSignUpButton() {
   const userSignedIn = userEmailDisplay;
   if (userSignedIn) {
-    if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '') {
+    if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '' && alertShown != true) {
       var allCrushesFilled = true;
       var allCrushesEmailsFilled = true;
 
@@ -135,7 +175,6 @@ function toggleSignUpButton() {
         }
       });
 
-      // Enable signup button only if both crush inputs and crush email inputs are filled
       signUpButton.disabled = !(allCrushesFilled && allCrushesEmailsFilled);
     } else {
       signUpButton.disabled = true;
@@ -323,6 +362,13 @@ function nextButton(){
   signUpButton.style.display = 'block';
   nextTab2();
 }
+
+// ...
+
+// Set up an interval to check crush inputs and crush email inputs periodically
+// Set up an interval to check crush inputs and crush email inputs periodically
+setInterval(checkDuplicateCrushes, 20); // Adjust the interval duration as needed
+
 
 
 
