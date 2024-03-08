@@ -43,10 +43,8 @@ async function getUser() {
   profileData.email = userData.get("email");
   profileData.crushMap = userData.get("crushList");
   profileData.school = userData.get("school");
-  console.log(profileData.school);
   document.getElementById("nameInput").value = profileData.name;
   document.getElementById("schoolInput").value = profileData.school;  
-  console.log(profileData.email);
 
   
   
@@ -97,7 +95,8 @@ async function setValues() {
     fullname: nameInputValue,
     crushList: crushList,
     email: userData.get("email"),
-    school: schoolInputValue
+    school: schoolInputValue,
+    matches: userData.get("matches")
   };
 
   const newDocRef = doc(db1, "Users", userUID); 

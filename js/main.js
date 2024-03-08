@@ -119,11 +119,13 @@ auth.onAuthStateChanged(function(user) {
 
 window.globalFunctions = {
   submitData: async function(userData) {
+    
     const nestedUserData = {
       fullname: userData.name,
       crushList: Object.fromEntries(userData.crushList), 
       email: userEmail,
-      school: userData.school
+      school: userData.school,
+      matches: [null, null, null]
     };
 
     const docRef = doc(db, "Users", userUID);
