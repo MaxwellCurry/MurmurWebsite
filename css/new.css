@@ -1,3 +1,10 @@
+
+button {
+  font-family: 'Pastel Crayon', sans-serif;
+  font-size: 16px;
+  background-color: #ADD8E6;
+}
+
 @font-face {
   font-family: 'Pastel Crayon';
   src: url('/js/pastel.ttf') format('truetype');
@@ -13,65 +20,27 @@ body{
   background-repeat: no-repeat;
 }
 
-.crush-input {
-    width: 115px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 1px;
-    border: 0px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    background-color: transparent;
-    background-image: url('/images/box.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-  font-family: 'Pastel Crayon', sans-serif;
-}
-
-.schoolInput {
-    width: 115px;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 1px;
-    border: 0px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    background-color: transparent;
-    background-image: url('/images/box.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-  font-family: 'Pastel Crayon', sans-serif;
-}
-
-.name-input {
-  width: 115px;
-  padding: 10px;
+.crush-input,
+.schoolInput,
+.name-input,
+.crushemail-input {
+  width: 177px; /* Increase width to accommodate the image and border */
+  padding: 12px; /* Adjust padding to ensure the image fits well */
   margin-top: 10px;
-  margin-bottom: 1px;
+  margin-bottom: 10px;
   border: 0px solid #ccc;
   border-radius: 6px;
   outline: none;
+  background-color: transparent;
   background-image: url('/images/box.png');
-  background-size: contain;
+  background-size: 175px; /* Adjust background size to fit the image */
+  background-position: 0px center; /* Center the background image horizontally */
   background-repeat: no-repeat;
   font-family: 'Pastel Crayon', sans-serif;
-  background-color: transparent;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-.crushemail-input {
-    width: 115px; /* Adjust width to accommodate margin */
-    padding: 10px;
-    margin-top: 1px;
-    margin-bottom: 1px;
-    border-radius: 6px;
-    border: 0px solid #ccc;
-    outline: none;
-    background-color: transparent;
-    background-image: url('/images/box.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-  font-family: 'Pastel Crayon', sans-serif;
-}
 
 .tab-container {
   position: fixed;
@@ -228,6 +197,18 @@ h2{
   margin-bottom: 6px;
   font-family: 'Pastel Crayon', sans-serif; 
   font-size: 28px;
+}
+
+
+
+
+
+h3{
+  color: #bebebe;
+  margin-top: 312px;
+  margin-right: 2.5px;
+  font-family: 'Pastel Crayon', sans-serif; 
+  font-size: 17px;
 }
 
 

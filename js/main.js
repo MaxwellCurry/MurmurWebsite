@@ -125,7 +125,8 @@ window.globalFunctions = {
       crushList: Object.fromEntries(userData.crushList), 
       email: userEmail,
       school: userData.school,
-      matches: [null, null, null]
+      matches: [],
+      emailArray: userData.emailArray
     };
 
     const docRef = doc(db, "Users", userUID);

@@ -10,12 +10,13 @@ var userEmail = "";
 var userUID = "";
 
 class User {
-  constructor(name, school, crushList) {
+  constructor(name, school, crushList, emailArray) {
     this.name = name; 
     this.school = school; 
     this.crushList = crushList; 
     this.userEmail = userEmail;
     this.userUID = userUID;
+    this.emailArray = emailArray;
   }
 }
 
@@ -235,7 +236,9 @@ function submitSignUp() {
       emailMap.set(crush2Email, crush2); 
       emailMap.set(crush3Email, crush3);  
       
-      var userData = new User(currName, currSchool, emailMap); 
+      const emailArray = [crush1Email, crush2Email, crush3Email];
+      
+      var userData = new User(currName, currSchool, emailMap, emailArray); 
       //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
 
       async function submitUserDataAndRedirect(userData) {

@@ -35,7 +35,8 @@ var profileData = {
   name: "",
   school: "",
   email: "",
-  crushMap: new Map()
+  crushMap: new Map(),
+  emailArray: []
 };
 async function getUser() {
   const userData = await getDoc(doc(db1, "Users", userUID));
@@ -43,6 +44,7 @@ async function getUser() {
   profileData.email = userData.get("email");
   profileData.crushMap = userData.get("crushList");
   profileData.school = userData.get("school");
+  profileData.emailArray = userData.get("emailArray");
   document.getElementById("nameInput").value = profileData.name;
   document.getElementById("schoolInput").value = profileData.school;  
 
@@ -89,6 +91,8 @@ async function setValues() {
     [crush2email]: crush2,
     [crush3email]: crush3
   };
+  
+  const emailArray = [crush1email, crush2email, crush3email];
 
   const userData = await getDoc(doc(db1, "Users", userUID));
   const profileData = {
@@ -96,7 +100,8 @@ async function setValues() {
     crushList: crushList,
     email: userData.get("email"),
     school: schoolInputValue,
-    matches: userData.get("matches")
+    matches: userData.get("matches"),
+    emailArray: emailArray
   };
 
   const newDocRef = doc(db1, "Users", userUID); 
@@ -324,10 +329,6 @@ if (notificationCount === 0) {
 window.addEventListener('beforeunload', function(event) {
   localStorage.setItem('userUID', null);
 });
-
-
-
-
 
 
 
