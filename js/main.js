@@ -36,6 +36,7 @@ async function findSchool(uid) {
   }
 }
 
+if (!window.location.href.includes("signup.html")) {
 googleLogIn.addEventListener("click", async function(event){
   if(event.target === googleLogIn){
     if(!toggle){
@@ -49,20 +50,15 @@ googleLogIn.addEventListener("click", async function(event){
           var dynamicVariableSpan = document.getElementById("dynamicVariable");
         
           if(login){
-            if(!userExists){
-              userEmailDisplay = document.createElement('p');
-              toggle = true;
-              originalButtonContent.html = googleLogIn.innerHTML;
-              googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
-              toggleSignUpButton(); // Call toggleSignUpButton after sign-in
-              dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
-              document.querySelector('.academic').style.display = 'none';
-              userEmail=user.email;
-              localStorage.setItem('userUID', user.uid);
-            }
-            else{
-              alert("YOU'VE ALREADY REGISTERED DUMBO");
-            }
+            userEmailDisplay = document.createElement('p');
+            toggle = true;
+            originalButtonContent.html = googleLogIn.innerHTML;
+            googleLogIn.style.backgroundImage = "url('/images/unlink.png')"; 
+            toggleSignUpButton(); // Call toggleSignUpButton after sign-in
+            dynamicVariableSpan.textContent = `Linked with: ${user.email}`;
+            document.querySelector('.academic').style.display = 'none';
+            userEmail=user.email;
+            localStorage.setItem('userUID', user.uid);
           }
           else{
             if(userExists){
@@ -71,7 +67,9 @@ googleLogIn.addEventListener("click", async function(event){
               window.location.href = "/html/new.html";
             }
             else{
-              alert("You need to register!");
+              localStorage.setItem('storage', user.email);
+              localStorage.setItem('userUID', user.uid);
+              window.location.href = "/html/signup.html";
             }
           }
         
@@ -96,12 +94,15 @@ googleLogIn.addEventListener("click", async function(event){
     }
   }
 });
+}
 
 
 auth.onAuthStateChanged(function(user) {
   if (user) {
     if(!userExists){
-      userUID = user.uid;
+      if(login){
+        userUID = user.uid;
+      }
     }
     else{
     }
@@ -119,11 +120,11 @@ auth.onAuthStateChanged(function(user) {
 
 window.globalFunctions = {
   submitData: async function(userData) {
-    
+    const realUser = localStorage.getItem('storage');
     const nestedUserData = {
       fullname: userData.name,
       crushList: Object.fromEntries(userData.crushList), 
-      email: userEmail,
+      email: realUser,
       school: userData.school,
       matches: [],
       emailArray: userData.emailArray
@@ -141,22 +142,23 @@ if (window.location.href.includes("signup.html")) {
   login = true;
 }
 
-// Add an event listener to detect changes in the dynamicVariable span
-document.addEventListener('DOMContentLoaded', function() {
-    const dynamicVariableSpan = document.getElementById('dynamicVariable');
-    dynamicVariableSpan.addEventListener('DOMSubtreeModified', function() {
-        const dynamicText = dynamicVariableSpan.textContent;
-        const academicMessage = document.querySelector('.academic');
-        
-        // Check if the dynamic text contains 'Linked with'
-        if (dynamicText.includes('Linked with')) {
-            // Hide the academic message
-            academicMessage.style.display = 'none';
-        } else {
-            // Show the academic message
-            academicMessage.style.display = 'block';
-        }
-    });
-});
+if (!window.location.href.includes("index.html")) {
+    document.addEventListener('DOMContentLoaded', function() {
+      const dynamicVariableSpan = document.getElementById('dynamicVariable');
+      dynamicVariableSpan.addEventListener('DOMSubtreeModified', function() {
+          const dynamicText = dynamicVariableSpan.textContent;
+          const academicMessage = document.querySelector('.academic');
+
+          // Check if the dynamic text contains 'Linked with'
+          if (dynamicText.includes('Linked with')) {
+              // Hide the academic message
+              academicMessage.style.display = 'none';
+          } else {
+              // Show the academic message
+              academicMessage.style.display = 'block';
+          }
+      });
+  });
+}
 
 

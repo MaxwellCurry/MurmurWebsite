@@ -8,28 +8,31 @@
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <body>
+  <p class="signed-in-message"><span id="dynamicVariable"></span></p>
 <!--  <img id="birdImg" src="/images/bird.png" alt="Bird Image"> -->
   <div class="center">
     <div class="flip-card slide-in-left">
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div id="tab1" class="tab-content">
-            <h2>Fill All Fields</h2>
+            <h2>User Info</h2>
+            <button class="next-button" onclick="nextButton()"></button>
             <div class="search-bar-container">
               <input type="text" class="search-bar" id="schoolSearch" placeholder="Enter Your School" autocomplete="off">
               <div class="schools-dropdown"></div>
             </div>
             <div><input type="text" id="email" placeholder="Enter your Full Name" autocomplete="off"></div>
-            <p class="signed-in-message"><span id="dynamicVariable"></span></p>
 
+<!--
             <button id="google-login-button" class="logbutton">
             </button>
+-->
             <h3 class="academic">Academic Email Only!</h3>
           </div>
         </div>
         <div class="flip-card-back">
           <div id="tab2" class="tab-content">
-            <h2 class="crush-title">Interests List</h2>
+            <h2 class="crush-title">Crushes List</h2>
             <div class="crush-container">
                 <div>
                     <input type="text" class="crush-input" id="crush1" placeholder="1st Full Name" autocomplete="off">
@@ -49,6 +52,7 @@
       </div>
     </div>
   </div>
+<!--
   
   <div class="tab-container">
     <button id="tabButton1" class="tab-button" onclick="nextTab1()">
@@ -58,9 +62,9 @@
       <img src="/images/light.png" alt="Tab 2">
     </button>
   </div>
+-->
   
   <button class="signup-button" onclick="submitSignUp()"></button>
-  <button class="next-button" onclick="nextButton()"></button>
 
   <script src="/js/main.js" defer type="module"></script>
   <script src="/js/signup.js"></script>

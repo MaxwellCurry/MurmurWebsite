@@ -61,16 +61,20 @@ async function getUser() {
       }
   }
   
-  document.getElementById('crush1').value = crushNames[0];
-  document.getElementById('crush2').value = crushNames[1];
-  document.getElementById('crush3').value = crushNames[2];
-  document.getElementById('crush1email').value = crushEmails[0];
-  document.getElementById('crush2email').value = crushEmails[1];
-  document.getElementById('crush3email').value = crushEmails[2];
+  document.getElementById('crush1').value = handleUndefinedInput(crushNames[0]);
+  document.getElementById('crush2').value = handleUndefinedInput(crushNames[1]);
+  document.getElementById('crush3').value = handleUndefinedInput(crushNames[2]);
+  document.getElementById('crush1email').value = handleUndefinedInput(crushEmails[0]);
+  document.getElementById('crush2email').value = handleUndefinedInput(crushEmails[1]);
+  document.getElementById('crush3email').value = handleUndefinedInput(crushEmails[2]);
   
   const schoolElement = document.getElementById("schoolDisplay");
   schoolElement.innerHTML = "Signed in as: " + userData.get("email");
   schoolElement.classList.add("pastel-crayon-font");
+}
+
+function handleUndefinedInput(input) {
+  return input !== undefined ? input : "";
 }
 
 
@@ -86,12 +90,19 @@ async function setValues() {
   const crush2email = document.getElementById('crush2email').value.trim();
   const crush3email = document.getElementById('crush3email').value.trim();
   
-  const crushList = {
-    [crush1email]: crush1,
-    [crush2email]: crush2,
-    [crush3email]: crush3
-  };
   
+  const crushList = {};
+
+  // Populate crushList conditionally
+  if (crush1email !== '') {
+    crushList[crush1email] = crush1;
+  }
+  if (crush2email !== '' && crush2 !== '') {
+    crushList[crush2email] = crush2;
+  }
+  if (crush3email !== '' && crush3 !== '') {
+    crushList[crush3email] = crush3;
+  }
   const emailArray = [crush1email, crush2email, crush3email];
 
   const userData = await getDoc(doc(db1, "Users", userUID));
@@ -109,45 +120,16 @@ async function setValues() {
 }
 
 
-let alertShown = false;
-function checkDuplicateCrushes() {
-  var crushInputs = document.querySelectorAll('.crush-input');
-  var crushEmailInputs = document.querySelectorAll('.crushemail-input');
-
-  var crushValues = Array.from(crushInputs).map(input => input.value.trim()).filter(value => value !== '');
-  var crushEmailValues = Array.from(crushEmailInputs).map(input => input.value.trim()).filter(value => value !== '');
-
-  if (!alertShown && hasDuplicates(crushValues)) {
-    alertShown = true;
-    
-    setTimeout(function() {
-      toggleEditButton();
-    }, 30);
-  }
-
-  if (!alertShown && hasDuplicates(crushEmailValues)) {
-    alertShown = true;
-    
-    setTimeout(function() {
-      toggleEditButton();
-    }, 30);
-  }
-}
-
 function hasDuplicates(array) {
   return (new Set(array)).size !== array.length;
 }
 
-function resetAlertFlag() {
-  alertShown = false;
-}
 
 var crushInputs = document.querySelectorAll('.crush-input');
 var crushEmailInputs = document.querySelectorAll('.crushemail-input');
-crushInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
-crushEmailInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
 
-setInterval(checkDuplicateCrushes, 20);
+
+//setInterval(checkDuplicateCrushes, 20);
 
 function toggleEditButton() {
     var editButton = document.getElementById("editButton");
@@ -158,7 +140,7 @@ function toggleEditButton() {
     var emptyTextBox = false;
 
     // Check for duplicates and empty textboxes
-    [crushInputs, crushEmailInputs, nameInputs, schoolInputs].forEach(inputs => {
+    [nameInputs, schoolInputs].forEach(inputs => {
         inputs.forEach(input => {
             if (input.value.trim() === '') {
                 emptyTextBox = true;
@@ -166,8 +148,7 @@ function toggleEditButton() {
         });
     });
 
-    // Disable the edit button if any textbox is empty or if alertShown is true
-    editButton.disabled = emptyTextBox || alertShown;
+    editButton.disabled = emptyTextBox;
 }
 
 // Add event listeners to all inputs for immediate feedback
@@ -180,7 +161,7 @@ document.getElementById("editButton").addEventListener("click", function() {
     var schoolInputs = document.querySelectorAll('.schoolInput');
     var allInputsFilled = true;
 
-    [crushInputs, crushEmailInputs, nameInputs, schoolInputs].forEach(inputs => {
+    [nameInputs, schoolInputs].forEach(inputs => {
         inputs.forEach(input => {
             if (input.value.trim() === '') {
                 allInputsFilled = false;
@@ -188,7 +169,8 @@ document.getElementById("editButton").addEventListener("click", function() {
         });
     });
 
-    if (!alertShown && allInputsFilled) {
+    if (allInputsFilled) {
+        console.log("yo");
         setValues();
     }
 });
@@ -298,25 +280,46 @@ function showPopup(message) {
     currentPopup = popup;
 }
 
-getMatches();
-let notificationCount = 0; // Changed const to let to allow reassignment
+getMatches(); // Changed const to let to allow reassignment
 
 async function getMatches() {
   const userData = await getDoc(doc(db1, "Users", userUID));
   const matches = userData.get('matches');
   
-  console.log(matches);
   
   for (let k = 0; k < matches.length; k++) { // Corrected the for loop syntax
     const matchArray = matches[k];
     if (matchArray != null) { // Corrected matchArray spelling
       const matchData = await getDoc(doc(db1, "Users", matchArray));
       addNotification("You have a new match!", "You have matched with: " + matchData.get("fullname"));
-      notificationCount++;
+//      matched = true
     }
   }
+//  confetti()
 }
 
+//function confetti() {
+//  for (let i = 0; i < 10; i++) {
+//    const confetti = document.createElement('div');
+//    confetti.classList.add('confetti');
+//    document.body.appendChild(confetti);
+//  }
+//
+//  // Remove confetti elements after 5 seconds
+//  setTimeout(() => {
+//    const confettiElements = document.querySelectorAll('.confetti');
+//    confettiElements.forEach(confetti => {
+//      confetti.remove();
+//    });
+//  }, 5000);
+//}
+//
+//confetti()
+
+
+const userData = await getDoc(doc(db1, "Users", userUID));
+const matches = userData.get('matches');
+let notificationCount = matches.length;
 
 const notificationCountElement = document.getElementById('notificationCount');
 
@@ -330,7 +333,112 @@ window.addEventListener('beforeunload', function(event) {
   localStorage.setItem('userUID', null);
 });
 
+function setActiveTab() {
+  // Query all content elements and tabs
+  const contents = document.querySelectorAll('.content');
+  const tabs = document.querySelectorAll('.tab');
 
+  // Loop through all content elements to find the one that's currently active
+  contents.forEach((content, index) => {
+    if (content.style.display === 'block' || content.classList.contains('active')) {
+      // Remove 'tab-active' class from all tabs
+      tabs.forEach(tab => tab.classList.remove('tab-active'));
+      
+      // Add 'tab-active' class to the corresponding tab
+      if (tabs[index]) {
+        tabs[index].classList.add('tab-active');
+      }
+    }
+  });
+}
+
+// Add event listeners to tabs for switching content and setting active tab
+tabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
+    // Hide all content elements
+    contents.forEach(content => {
+      content.classList.remove('active');
+      content.style.display = 'none'; // Assuming you use this to hide content
+    });
+
+    // Show the clicked tab's content
+    contents[index].classList.add('active');
+    contents[index].style.display = 'block'; // Assuming you use this to show content
+
+    // Update which tab is highlighted as active
+    setActiveTab();
+  });
+});
+
+// Run setActiveTab on page load to highlight the correct initial tab
+document.addEventListener('DOMContentLoaded', setActiveTab);
+
+tabs[0].classList.add('tab-active');
+
+document.addEventListener("DOMContentLoaded", function(){
+  var searchInput = document.querySelector(".search-bar");
+  var dropdown = document.querySelector(".schools-dropdown");
+
+
+  for (let i = 0; i < 33971; i++) {
+		var option = document.createElement("div");
+		option.classList.add("school-option");
+		dropdown.appendChild(option);
+  }
+  var schoolOptions = document.querySelectorAll(".school-option");
+
+  fetch('../schools.txt')
+	.then(response => response.text())
+	.then(data => {
+		var schools = data.split('\n').map(function(item) {
+			return item.trim();
+	  });
+	  schoolOptions.forEach(function(option, index) {
+			option.textContent = schools[index];
+	  });
+  }).catch(error => console.error('Error fetching schools:', error));
+
+document.addEventListener("click", function (event) {
+    if (event.target.closest(".search-bar-container")) {
+        dropdown.style.display = "block";
+        schoolOptions.forEach(function (option, index) {
+            if (index < 5) {
+                option.style.display = "block";
+            } else {
+                option.style.display = "none";
+            }
+        });
+    } else {
+        dropdown.style.display = "none";
+    }
+
+    // Stop event propagation if the click occurred within the search bar container
+    if (!event.target.classList.contains("search-bar") && !event.target.classList.contains("schools-dropdown")) {
+        event.stopPropagation();
+    }
+
+    if (event.target.classList.contains("school-option")) {
+        searchInput.value = event.target.textContent;
+        dropdown.style.display = "none";
+    }
+});
+
+
+  searchInput.addEventListener("input", function () {
+		var visibleOptionsCount = 0;
+		var searchTerm = searchInput.value.toLowerCase();
+
+		schoolOptions.forEach(function (option) {
+			var optionText = option.textContent.toLowerCase();
+			if (optionText.includes(searchTerm) && visibleOptionsCount < 5) {
+				option.style.display = "block";
+				visibleOptionsCount++;
+			} else {
+				option.style.display = "none";
+			}
+		});
+  });
+});
 
 
 

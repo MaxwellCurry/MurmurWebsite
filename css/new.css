@@ -2,7 +2,15 @@
 button {
   font-family: 'Pastel Crayon', sans-serif;
   font-size: 16px;
-  background-color: #ADD8E6;
+  background-color: #C3EEFA;
+  border: 2px solid #ccc;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #A1D9E6;
+  border-radius: 5px;
 }
 
 @font-face {
@@ -18,10 +26,10 @@ body{
   background-image: url("/images/paper.png");
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .crush-input,
-.schoolInput,
 .name-input,
 .crushemail-input {
   width: 177px; /* Increase width to accommodate the image and border */
@@ -41,24 +49,44 @@ body{
   box-sizing: border-box;
 }
 
+.schoolInput{
+  width: 177px; /* Increase width to accommodate the image and border */
+  padding: 12px; /* Adjust padding to ensure the image fits well */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: -10/5px;
+  border: 0px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  background-color: transparent;
+  background-image: url('/images/box.png');
+  background-size: 175px; /* Adjust background size to fit the image */
+  background-position: 0px center; /* Center the background image horizontally */
+  background-repeat: no-repeat;
+  font-family: 'Pastel Crayon', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
 
 .tab-container {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #89cff0;
+  margin-left: -8px;
+  background-color: #89CFF0;
   display: flex;
   justify-content: space-around;
   padding: 30px 0;
-  
 }
 
 .tab {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 24px;
 }
+
 
 #notificationCount {
     background-color: red;
@@ -69,6 +97,7 @@ body{
     margin-left: 2px; /* Adjust as needed */
     position: relative; /* Add relative positioning */
     top: -8px; /* Adjust the vertical position */
+  font-family: Arial, sans-serif;
 }
 
 .content {
@@ -134,11 +163,12 @@ body{
 }
 
 #signButton{
-    margin-top: 12px;
+    margin-top: 7px;
 }
 
 .notification-container {
-    width: 500px; /* Set maximum width for the notification box */
+    width: 80%; /* Set a default width for the notification box */
+    max-width: 500px; /* Set maximum width for larger screens */
     height: 300px;
     background-color: #f0f0f0; /* Grey background color */
     padding: 10px; /* Add some padding around the notifications */
@@ -146,7 +176,35 @@ body{
     margin: 0 auto; /* Center the notification box horizontally */
     position: relative; /* Add relative positioning for absolute popup */
     font-size: 25px;
+    font-family: 'Pastel Crayon', sans-serif;
+    border: 3px solid #ccc;
 }
+
+h3{
+  color: #bebebe;
+  font-family: 'Pastel Crayon', sans-serif; 
+  font-size: 17px;
+  position: absolute;
+  top: 310px;
+  left: 50%; /* Set left position to 50% */
+  transform: translateX(-50%);
+}
+
+/* Adjust the width for smaller screens */
+@media screen and (max-width: 768px) {
+    .notification-container {
+        width: 90%; /* Decrease width for smaller screens */
+    }
+}
+
+/* Adjust the width for even smaller screens */
+@media screen and (max-width: 576px) {
+    .notification-container {
+        width: 90%; /* Decrease width further for very small screens */
+    }
+}
+
+
 
 .notification {
     margin-bottom: 5px; /* Add margin between notifications */
@@ -157,6 +215,8 @@ body{
     cursor: pointer; /* Change cursor to pointer when hovering over notification */
     word-wrap: break-word; /* Allow long words to break */
     max-width: 100%; /* Set maximum width for each notification */
+  border: 2.5px solid #ccc;
+  font-family: 'Pastel Crayon', sans-serif;
 }
 
 .notification:hover {
@@ -178,6 +238,8 @@ body{
     z-index: 1000;
     font-size: 25px;
     text-align: center;
+  font-family: 'Pastel Crayon', sans-serif;
+  border: 6px solid lightgreen;
 }
 
 .popup button {
@@ -194,22 +256,66 @@ body{
 
 h2{
   color: #6495ED;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   font-family: 'Pastel Crayon', sans-serif; 
-  font-size: 28px;
+  font-size: 36px;
+  font-weight: 599.9999;
 }
 
 
 
 
-
-h3{
-  color: #bebebe;
-  margin-top: 312px;
-  margin-right: 2.5px;
+.crush-container span {
+  margin-right: 10px; /* Add some space between the number 
+  and the input */
+  margin-bottom: 50px;
   font-family: 'Pastel Crayon', sans-serif; 
+  color: #6495ED;
+}
+
+.profile-info span {
+  margin-right: -0px; /* Add some space between the number 
+  and the input */
+  margin-bottom: 50px;
+  font-family: 'Pastel Crayon', sans-serif; 
+  color: #6495ED;
+}
+
+.tab-active {
+  background-color: #A1D9E6; /* Light grey background */
+  border-radius: 5px;
+}
+
+.search-bar {
+  font-family: 'Pastel Crayon', sans-serif;
+  flex: 1;
+  padding: 10px;
   font-size: 17px;
+  border: 0px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #6C8EBF; /* Pastel pink text color */
+  z-index: 10;
 }
 
+.schools-dropdown {
+  font-family: 'Pastel Crayon', sans-serif;
+  position: absolute;
+  top: 31%;
+  left: 114px;
+  width: 52%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: none;
+  z-index: 100;
+  background-color: #feff9c;
+}
 
+.school-option {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  z-index: 100;
+}
 

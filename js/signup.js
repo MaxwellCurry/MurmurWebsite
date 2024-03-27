@@ -22,6 +22,7 @@ class User {
 
 
 
+
 function getQueryParam(name) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(name);
@@ -45,7 +46,7 @@ function showTab(tabId, buttonIndex) {
     button.classList.remove('active-tab-button');
   });
 
-  tabButtons[buttonIndex].classList.add('active-tab-button');
+//  tabButtons[buttonIndex].classList.add('active-tab-button');
 
   var tabs = document.querySelectorAll('.tab-content');
   tabs.forEach(function(tab) {
@@ -119,6 +120,7 @@ signupButton.style.backgroundImage = "url('/images/signupgrey.png')";
 
 
 let alertShown = false;
+
 function checkDuplicateCrushes() {
   var crushInputs = document.querySelectorAll('.crush-input');
   var crushEmailInputs = document.querySelectorAll('.crushemail-input');
@@ -151,32 +153,49 @@ function resetAlertFlag() {
   alertShown = false;
 }
 
+toggleNextButton();
+
+function toggleNextButton() {
+  var nextButton = document.querySelector('.next-button');
+  if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '') {
+    nextButton.disabled = false; // Enable the next button
+    nextButton.classList.remove('disabled'); // Optional: Adjust CSS class for visual feedback
+    nextButton.style.backgroundImage = "url('/images/next.png')"; // Set enabled background image
+  } else {
+    nextButton.disabled = true; // Disable the next button
+    nextButton.classList.add('disabled'); // Optional: Adjust CSS class for visual feedback
+    nextButton.style.backgroundImage = "url('/images/nextgrey.png')"; // Set disabled background image
+  }
+}
+
+
+toggleNextButton();
+
+schoolSearch.addEventListener('input', toggleNextButton);
+emailInput.addEventListener('input', toggleNextButton);
+
+
 var crushInputs = document.querySelectorAll('.crush-input');
 var crushEmailInputs = document.querySelectorAll('.crushemail-input');
 
 crushInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
 crushEmailInputs.forEach(input => input.addEventListener('input', resetAlertFlag));
 
+var signupButton = document.querySelector('.signup-button');
+signupButton.style.display = 'none';
+
 function toggleSignUpButton() {
   const userSignedIn = userEmailDisplay;
   if (userSignedIn) {
     if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '' && alertShown != true) {
-      var allCrushesFilled = true;
-      var allCrushesEmailsFilled = true;
-
-      crushInputs.forEach(function(crushInput) {
-        if (crushInput.value.trim() === '') {
-          allCrushesFilled = false;
-        }
-      });
-
-      crushEmailInputs.forEach(function(crushEmailInput) {
-        if (crushEmailInput.value.trim() === '') {
-          allCrushesEmailsFilled = false;
-        }
-      });
-
-      signUpButton.disabled = !(allCrushesFilled && allCrushesEmailsFilled);
+      // Check only the first crush input
+      var firstCrushInput = document.querySelector('.crush-input');
+      var firstEmailInput = document.querySelector('.crushemail-input');
+      if (firstCrushInput && firstCrushInput.value.trim() !== '' && firstEmailInput && firstEmailInput.value.trim() !== '') {
+        signUpButton.disabled = false;
+      } else {
+        signUpButton.disabled = true;
+      }
     } else {
       signUpButton.disabled = true;
     }
@@ -198,60 +217,44 @@ function toggleSignUpButton() {
 
 
 
+
 function submitSignUp() {
   // Check if all fields are filled
   if (schoolSearch.value.trim() !== '' && emailInput.value.trim() !== '') {
-    var allCrushesFilled = true;
-    crushInputs.forEach(function(crushInput) {
-      if (crushInput.value.trim() === '') {
-        allCrushesFilled = false;
-      }
-    });
+    currName = document.getElementById('email').value.trim(); 
+    currSchool = document.getElementById('schoolSearch').value.trim(); 
 
-    // Check if all crush email fields are filled
-    var allCrushEmailsFilled = true;
-    var crushEmailInputs = document.querySelectorAll('.crushemail-input');
-    crushEmailInputs.forEach(function(emailInput) {
-      if (emailInput.value.trim() === '') {
-        allCrushEmailsFilled = false;
-      }
-    });
+    crush1 = document.getElementById('crush1').value.trim();
+    crush2 = document.getElementById('crush2').value.trim(); 
+    crush3 = document.getElementById('crush3').value.trim(); 
 
-    if (allCrushesFilled && allCrushEmailsFilled) {
-      currName = document.getElementById('email').value.trim(); 
-      currSchool = document.getElementById('schoolSearch').value.trim(); 
+    crush1Email = document.getElementById('crush1email').value.trim(); 
+    crush2Email = document.getElementById('crush2email').value.trim(); 
+    crush3Email = document.getElementById('crush3email').value.trim(); 
 
-      crush1 = document.getElementById('crush1').value.trim(); 
-      crush2 = document.getElementById('crush2').value.trim(); 
-      crush3 = document.getElementById('crush3').value.trim(); 
 
-      crush1Email = document.getElementById('crush1email').value.trim(); 
-      crush2Email = document.getElementById('crush2email').value.trim(); 
-      crush3Email = document.getElementById('crush3email').value.trim(); 
-            
-      
-      const emailMap = new Map(); 
-      
-      emailMap.set(crush1Email, crush1); 
-      emailMap.set(crush2Email, crush2); 
-      emailMap.set(crush3Email, crush3);  
-      
-      const emailArray = [crush1Email, crush2Email, crush3Email];
-      
-      var userData = new User(currName, currSchool, emailMap, emailArray); 
-      //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
+    const emailMap = new Map(); 
 
-      async function submitUserDataAndRedirect(userData) {
-        await window.globalFunctions.submitData(userData);
-        window.location.href = "/html/new.html";
-      }
-
-      submitUserDataAndRedirect(userData);
-
-      
-    } else {
-      alert('Please fill all crush and crush email fields.');
+    emailMap.set(crush1Email, crush1); 
+    if(crush2Email != '' && crush2 != ''){
+      emailMap.set(crush2Email, crush2);  
     }
+    if(crush3Email != '' && crush3 != ''){
+      emailMap.set(crush3Email, crush3);  
+    } 
+
+    const emailArray = [crush1Email, crush2Email, crush3Email];
+
+    var userData = new User(currName, currSchool, emailMap, emailArray); 
+    //var userData = [document.getElementById('email').value.trim(), document.getElementById('school').value.trim(), crushList, crushEmailList];
+
+    async function submitUserDataAndRedirect(userData) {
+      await window.globalFunctions.submitData(userData);
+      window.location.href = "/html/new.html";
+    }
+
+    submitUserDataAndRedirect(userData);
+
   } else {
     alert('Please fill all required fields.');
   }
@@ -282,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function(){
   var dropdown = document.querySelector(".schools-dropdown");
 
 
-  for (let i = 0; i < 6000; i++) {
+  for (let i = 0; i < 33971; i++) {
 		var option = document.createElement("div");
 		option.classList.add("school-option");
 		dropdown.appendChild(option);
@@ -300,24 +303,31 @@ document.addEventListener("DOMContentLoaded", function(){
 	  });
   }).catch(error => console.error('Error fetching schools:', error));
 
-  document.addEventListener("click", function (event) {
-		if (event.target.closest(".search-bar-container")) {
-			dropdown.style.display = "block";
-			schoolOptions.forEach(function (option, index) {
-				if (index < 3) {
-					option.style.display = "block";
-				} else {
-					option.style.display = "none";
-				}
-			});
-		} else {
-			dropdown.style.display = "none";
-		}
-		if (event.target.classList.contains("school-option")) {
-			searchInput.value = event.target.textContent;
-			dropdown.style.display = "none";
-		}
-  });
+document.addEventListener("click", function (event) {
+    if (event.target.closest(".search-bar-container")) {
+        dropdown.style.display = "block";
+        schoolOptions.forEach(function (option, index) {
+            if (index < 5) {
+                option.style.display = "block";
+            } else {
+                option.style.display = "none";
+            }
+        });
+    } else {
+        dropdown.style.display = "none";
+    }
+
+    // Stop event propagation if the click occurred within the search bar container
+    if (!event.target.classList.contains("search-bar") && !event.target.classList.contains("schools-dropdown")) {
+        event.stopPropagation();
+    }
+
+    if (event.target.classList.contains("school-option")) {
+        searchInput.value = event.target.textContent;
+        dropdown.style.display = "none";
+    }
+});
+
 
   searchInput.addEventListener("input", function () {
 		var visibleOptionsCount = 0;
@@ -325,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 		schoolOptions.forEach(function (option) {
 			var optionText = option.textContent.toLowerCase();
-			if (optionText.includes(searchTerm) && visibleOptionsCount < 3) {
+			if (optionText.includes(searchTerm) && visibleOptionsCount < 5) {
 				option.style.display = "block";
 				visibleOptionsCount++;
 			} else {
@@ -366,12 +376,89 @@ function nextButton(){
   nextTab2();
 }
 
-// ...
 
-// Set up an interval to check crush inputs and crush email inputs periodically
-// Set up an interval to check crush inputs and crush email inputs periodically
 setInterval(checkDuplicateCrushes, 20); // Adjust the interval duration as needed
 
+const dynamicVariableSpan = document.getElementById('dynamicVariable');
+const realUser = localStorage.getItem('storage');
 
+if(realUser === null){
+  window.location.href = "../index.html";
+}
+else{
+  console.log(realUser)
+  userEmailDisplay = document.createElement('p');
+  toggle = true;
+  toggleSignUpButton(); // Call toggleSignUpButton after sign-in
+  dynamicVariableSpan.textContent = `Linked with: ${realUser}`;
+  document.querySelector('.academic').style.display = 'none';
+  userEmail=realUser.email;
+}
+
+
+document.addEventListener("DOMContentLoaded", function(){
+  var searchInput = document.querySelector(".search-bar");
+  var dropdown = document.querySelector(".schools-dropdown");
+
+
+  for (let i = 0; i < 33971; i++) {
+		var option = document.createElement("div");
+		option.classList.add("school-option");
+		dropdown.appendChild(option);
+  }
+  var schoolOptions = document.querySelectorAll(".school-option");
+
+  fetch('../schools.txt')
+	.then(response => response.text())
+	.then(data => {
+		var schools = data.split('\n').map(function(item) {
+			return item.trim();
+	  });
+	  schoolOptions.forEach(function(option, index) {
+			option.textContent = schools[index];
+	  });
+  }).catch(error => console.error('Error fetching schools:', error));
+
+document.addEventListener("click", function (event) {
+    if (event.target.closest(".search-bar-container")) {
+        dropdown.style.display = "block";
+        schoolOptions.forEach(function (option, index) {
+            if (index < 5) {
+                option.style.display = "block";
+            } else {
+                option.style.display = "none";
+            }
+        });
+    } else {
+        dropdown.style.display = "none";
+    }
+
+    // Stop event propagation if the click occurred within the search bar container
+    if (!event.target.classList.contains("search-bar") && !event.target.classList.contains("schools-dropdown")) {
+        event.stopPropagation();
+    }
+
+    if (event.target.classList.contains("school-option")) {
+        searchInput.value = event.target.textContent;
+        dropdown.style.display = "none";
+    }
+});
+
+
+  searchInput.addEventListener("input", function () {
+		var visibleOptionsCount = 0;
+		var searchTerm = searchInput.value.toLowerCase();
+
+		schoolOptions.forEach(function (option) {
+			var optionText = option.textContent.toLowerCase();
+			if (optionText.includes(searchTerm) && visibleOptionsCount < 5) {
+				option.style.display = "block";
+				visibleOptionsCount++;
+			} else {
+				option.style.display = "none";
+			}
+		});
+  });
+});
 
 

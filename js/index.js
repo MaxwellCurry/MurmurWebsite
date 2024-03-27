@@ -1,63 +1,3 @@
-document.addEventListener("DOMContentLoaded", function(){
-  var searchInput = document.querySelector(".search-bar");
-  var dropdown = document.querySelector(".schools-dropdown");
-
-
-  for (let i = 0; i < 6000; i++) {
-		var option = document.createElement("div");
-		option.classList.add("school-option");
-		dropdown.appendChild(option);
-  }
-  var schoolOptions = document.querySelectorAll(".school-option");
-
-  fetch('/schools.txt')
-	.then(response => response.text())
-	.then(data => {
-		var schools = data.split('\n').map(function(item) {
-			return item.trim();
-	  });
-	  schoolOptions.forEach(function(option, index) {
-			option.textContent = schools[index];
-	  });
-  }).catch(error => console.error('Error fetching schools:', error));
-
-  document.addEventListener("click", function (event) {
-		if (event.target.closest(".search-bar-container")) {
-			dropdown.style.display = "block";
-			schoolOptions.forEach(function (option, index) {
-				if (index < 5) {
-					option.style.display = "block";
-				} else {
-					option.style.display = "none";
-				}
-			});
-		} else {
-			dropdown.style.display = "none";
-		}
-		if (event.target.classList.contains("school-option")) {
-			searchInput.value = event.target.textContent;
-			dropdown.style.display = "none";
-            redirectToSignup();
-		}
-  });
-
-  searchInput.addEventListener("input", function () {
-		var visibleOptionsCount = 0;
-		var searchTerm = searchInput.value.toLowerCase();
-
-		schoolOptions.forEach(function (option) {
-			var optionText = option.textContent.toLowerCase();
-			if (optionText.includes(searchTerm) && visibleOptionsCount < 5) {
-				option.style.display = "block";
-				visibleOptionsCount++;
-			} else {
-				option.style.display = "none";
-			}
-		});
-  });
-});
-
-
 document.addEventListener("DOMContentLoaded", function () {
 	var infoButton = document.getElementById("info-button");
 	var popupContainer = document.createElement("div");
@@ -66,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var popupText = document.createElement("div");
 	popupText.classList.add("popup-text");
-	popupText.textContent = "Introducing the Murmur! Simply input your school and the names of people you secretly like, and if there's a mutual entry, you'll both get a notification signifying a match! Until you both decide to accept the match, identities will remain anonymous. 'Find your School' then 'Sign Up' to get started!";
+	popupText.textContent = "Introducing Murmur! Simply input the name and school emails of people you secretly like, and if there's a mutual entry, you'll both get a notification signifying a match! Register with your school email to get started!";
 
 	var closePopup = document.createElement("div");
 	closePopup.classList.add("close-popup");
@@ -84,25 +24,20 @@ document.addEventListener("DOMContentLoaded", function () {
 		popupContainer.style.display = popupContainer.style.display === "none" ? "block" : "none";
 	});
 });
+  
 window.addEventListener("DOMContentLoaded", (event) => {
     const donate = document.getElementById('donate-button');
     if (donate) {
       donate.addEventListener('click', function() {
-				window.open("https://midpenpost.org/tag/garv-virginkar/", "_blank");
+				window.open("https://github.com/MaxwellCurry/MurmurWebsite", "_blank");
 			});
     }
 });
 
 function redirectToSignup() {
-  var schoolSearchInput = document.getElementById("schoolSearch");
-  var schoolName = schoolSearchInput.value.trim();
-  window.location.href = "/html/signup.html?school=" + encodeURIComponent(schoolName);
+  window.location.href = "/html/signup.html";
 }
+  
 function redirectToLogin() {
   window.location.href = "login.html";
 }
-
-
-
-
-

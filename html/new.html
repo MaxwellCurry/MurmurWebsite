@@ -11,8 +11,8 @@
   <div><button id="signButton">Sign Out</button></div>
   
   <div class="tab-container">
-    <button class="tab" id="tab1">Tab 1<span id="notificationCount"></span></button>
-    <button class="tab" id="tab3">Tab 2</button>
+    <button class="tab" id="tab1">Matches<span id="notificationCount"></span></button>
+    <button class="tab" id="tab3">Profile</button>
   </div>
   
   <div class="content" id="content1">
@@ -22,7 +22,6 @@
       <div class="notification-box" id="notificationBox"></div>
       <h3>*program runs daily at 8:00am</h3>
     </div>
-    
   </div>
 
   <span id="profileNameSpan"></span>
@@ -31,34 +30,33 @@
     <h2>Edit Info</h2>
     <div class="profile-info">
       <div>
-          <input type="text" class="name-input" id="nameInput" placeholder="Enter your name" disabled>
+          <span>Name:   </span><input type="text" class="name-input" id="nameInput" placeholder="Enter your name" disabled>
       </div>
       <div>
-          <input type="text" class="schoolInput" id="schoolInput" placeholder="Enter your School" disabled>
+          <span>School: </span><input type="text" class="schoolInput" id="schoolInput" placeholder="Enter your School" disabled>
+      </div>
+      <div class="search-bar-container">
+        <input type="text" class="search-bar" id="schoolSearch" placeholder="Enter Your School" autocomplete="off">
+        <div class="schools-dropdown"></div>
       </div>
       <div class="crush-container">
         <div>
-            <input type="text" class="crush-input" id="crush1" placeholder="1st Full Name" disabled>
+            <span>1. </span><input type="text" class="crush-input" id="crush1" placeholder="1st Full Name" disabled>
             <input type="text" class="crushemail-input" id="crush1email" placeholder="1st School Email" disabled>
         </div>
         <div>
-            <input type="text" class="crush-input" id="crush2" placeholder="2nd Full Name" disabled>
+            <span>2. </span><input type="text" class="crush-input" id="crush2" placeholder="2nd Full Name" disabled>
             <input type="text" class="crushemail-input" id="crush2email" placeholder="2nd School Email" disabled>
         </div>
         <div>
-            <input type="text" class="crush-input" id="crush3" placeholder="3rd Full Name" disabled>
+            <span>3. </span><input type="text" class="crush-input" id="crush3" placeholder="3rd Full Name" disabled>
             <input type="text" class="crushemail-input" id="crush3email" placeholder="3rd School Email" disabled>
         </div>
       </div>
       <div><button id="editButton">Edit</button></div>
-      
       <div><button id="deleteButton">Delete Account</button></div>
-
     </div>
-    
   </div>
-
-
 
   <script src="/js/new.js" defer type="module"></script>
 <!--  <script src="/js/new.js" defer></script>-->

@@ -134,10 +134,10 @@ body {
     background-image: url('/images/login.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: calc(0.6 * 214px); /* Width of the image */
-    height: calc(0.5 * 88px); /* Height of the image */
+    width: calc(0.75 * 214px); /* Width of the image */
+    height: calc(0.65 * 88px); /* Height of the image */
     position: absolute;
-    top: 72%;
+    top: 63%;
     left: 50%;
     transform: translate(-47%, 0%);
     display: flex;
@@ -206,7 +206,7 @@ h2 {
 .close-popup {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 10px;a
   font-size: 18px;
   color: #666;
   cursor: pointer;
@@ -216,7 +216,7 @@ h2 {
   position: absolute;
   top: 20.5px;
   right: 21px;
-  width: 98.5px;
+  width: 93.5px;
   height: 98.5px;
   background-color: transparent;
   background-image: url('/images/donate.png');
