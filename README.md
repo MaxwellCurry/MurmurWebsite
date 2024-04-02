@@ -4,11 +4,11 @@ Murmur is the dating app that ditches swiping for something more intriguing.
 Instead of a superficial photo parade, you confidentially enter the usernames of your crushes. 
 If your crush secretly adds you to their list too, then the magic happens! Murmur anonymously notifies you both, igniting a flame of possibility. 
 No more wondering if your barista or cute classmate feels the same way – 
-Murmur lets you discreetly explore potential connections without the pressure of immediate rejection.
+Murmur lets you discreetly explore potential connections without the pressure of immediate rejection. 
 
 ## Getting Started
 
-[Murmur](https://murmurmatch.com/)
+Download Murmur today and start whispering your crushes' usernames into the digital universe – you never know who might be whispering yours back.[Murmur](https://murmurmatch.com/)
 
 ## Built With
 
