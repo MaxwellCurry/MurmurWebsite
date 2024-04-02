@@ -8,7 +8,9 @@ Murmur lets you discreetly explore potential connections without the pressure of
 
 ## Getting Started
 
-Download Murmur today and start whispering your crushes' usernames into the digital universe – you never know who might be whispering yours back.[Murmur](https://murmurmatch.com/)
+Download Murmur today and start whispering your crushes' usernames into the digital universe – you never know who might be whispering yours back.
+
+[Murmur](https://murmurmatch.com/)
 
 ## Built With
 
