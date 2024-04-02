@@ -23,9 +23,3 @@ Download Murmur today and start whispering your crushes' usernames into the digi
 * **Garv Virginkar** - *Backend help* - [Garv V](https://github.com/virging-mvla)
 
 See also the list of [contributors](https://github.com/MaxwellFung/MurmurWebsite/graphs/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
