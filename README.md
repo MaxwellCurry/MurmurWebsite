@@ -18,8 +18,8 @@ Download Murmur today and start whispering your crushes' usernames into the digi
 
 ## Authors
 
-* **Maxwell Fung** - *Web Design, Basically everything else* - [Maxwell Fung](https://github.com/MaxwellFung)
-* **Teo Imoto-Tar** - *Backend asyc matchmaking algorithim using Google Cloud and Firebase Functions, Firebase Authentication* - [Teo I](https://github.com/teooi)
+* **Maxwell Fung** - *Project Founder, Front End(JS/Firestore/CSS), Web Design, Security Rules.* - [Maxwell Fung](https://github.com/MaxwellFung)
+* **Teo Imoto-Tar** - *Backend async matchmaking algorithm using Firebase Cloud Functions, Firebase Authentication* - [Teo I](https://github.com/teooi)
 * **Garv Virginkar** - *Backend help* - [Garv V](https://github.com/virging-mvla)
 
 See also the list of [contributors](https://github.com/MaxwellFung/MurmurWebsite/graphs/contributors) who participated in this project.
